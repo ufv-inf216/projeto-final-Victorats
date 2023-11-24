@@ -1,0 +1,3 @@
+C:/Users/Gabriel/Desktop/UFV/4 periodo/INF216/projeto final/BombermanDPI/cmake-build-debug/CMakeFiles/p5-pacman.dir
+C:/Users/Gabriel/Desktop/UFV/4 periodo/INF216/projeto final/BombermanDPI/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Gabriel/Desktop/UFV/4 periodo/INF216/projeto final/BombermanDPI/cmake-build-debug/CMakeFiles/rebuild_cache.dir
