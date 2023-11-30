@@ -44,28 +44,28 @@ Pacman::Pacman(Game* game,
 
 void Pacman::OnProcessInput(const uint8_t* state)
 {
-    Vector2 velocity = mRigidBodyComponent->GetVelocity();
-
     if(state[SDL_SCANCODE_D]){
-        mRigidBodyComponent->ApplyForce(Vector2(mForwardSpeed,0));
+        mRigidBodyComponent->SetVelocity(Vector2(mForwardSpeed, 0));
         mRotation = 0;
-
-
-
     }
     else if(state[SDL_SCANCODE_A]) {
-        mRigidBodyComponent->ApplyForce(Vector2(-mForwardSpeed, 0));
+        mRigidBodyComponent->SetVelocity(Vector2(-mForwardSpeed, 0));
         mRotation = Math::Pi;
-
+    }
+    else {
+        mRigidBodyComponent->SetVelocity(Vector2(0, mRigidBodyComponent->GetVelocity().y));
     }
 
     if (state[SDL_SCANCODE_W])
     {
-        mRigidBodyComponent->SetVelocity(Vector2(velocity.x, -mForwardSpeed));
+        mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, -mForwardSpeed));
     }
     else if (state[SDL_SCANCODE_S])
     {
-        mRigidBodyComponent->SetVelocity(Vector2(velocity.x, mForwardSpeed));
+        mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mForwardSpeed));
+    }
+    else {
+        mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, 0));
     }
 }
 
