@@ -1,3 +1,0 @@
-C:/Users/victo/Documents/GitHub/projeto-final-Victorats/cmake-build-debug/CMakeFiles/p5-pacman.dir
-C:/Users/victo/Documents/GitHub/projeto-final-Victorats/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/victo/Documents/GitHub/projeto-final-Victorats/cmake-build-debug/CMakeFiles/rebuild_cache.dir
