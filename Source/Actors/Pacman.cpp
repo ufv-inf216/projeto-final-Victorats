@@ -18,11 +18,12 @@ Pacman::Pacman(Game* game,
         ,mIsDead(false)
         , mSpawnNode(nullptr)
 {
-    mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Pacman/Pacman.png", "../Assets/Sprites/Pacman/Pacman.json");
+    mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Pacman/globinsprite2.png", "../Assets/Sprites/Pacman/goblin.json");
     mDrawComponent->AddAnimation("idle", {0});
-    mDrawComponent->AddAnimation("dead", {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11});
-    mDrawComponent->AddAnimation("right", {13, 12, 0});
-    mDrawComponent->AddAnimation("up", {15, 14, 0});
+    mDrawComponent->AddAnimation("dead", {0});
+    mDrawComponent->AddAnimation("right", {4,5,6,7});
+    mDrawComponent->AddAnimation("up", {8,9});
+    mDrawComponent->AddAnimation("down", {1,2,3});
 
     mDrawComponent->SetAnimation("idle");
     mDrawComponent->SetAnimFPS(10.0f);

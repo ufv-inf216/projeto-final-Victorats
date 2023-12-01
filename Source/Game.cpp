@@ -75,7 +75,7 @@ void Game::InitializeActors()
     background->SetPosition(Vector2(234.0f, 258.0f));
     new DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 480, 480);
 
-    LoadLevel("../Assets/Levels/Level.txt");
+    LoadLevel("../Assets/Levels/Level1.txt");
     LoadPaths("../Assets/Levels/Paths.txt");
 
     SetGameState(State::Intro);
@@ -193,6 +193,7 @@ void Game::BuildPathGraphVertices(std::ifstream& file,
                                   std::vector<std::vector<char>>& txtGrid,
                                   std::vector<std::vector<PathNode*>> &nodeGrid)
 {
+
     const float STARTX = 34.0f;
     const float STARTY = 34.0f;
     const float SPACING = 16.0f;
