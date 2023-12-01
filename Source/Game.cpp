@@ -75,8 +75,8 @@ void Game::InitializeActors()
     background->SetPosition(Vector2(234.0f, 258.0f));
     new DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 480, 480);
 
-    LoadLevel("../Assets/Levels/Level1.txt");
-    LoadPaths("../Assets/Levels/Paths.txt");
+    LoadLevel("../Assets/Levels/Level.txt");
+//    LoadPaths("../Assets/Levels/Paths.txt");
 
     SetGameState(State::Intro);
 }
@@ -105,9 +105,9 @@ void Game::SetGameState(State gameState)
 
 void Game::LoadLevel(const std::string& levelPath)
 {
-    const float STARTX = 18.0f;
-    const float STARTY = 18.0f;
-    const float SPACING = 16.0f;
+    const float STARTX = 16.0f;
+    const float STARTY = 32.0f;
+    const float SPACING = 32.0f;
 
     std::ifstream file(levelPath);
     if (!file.is_open())
@@ -176,6 +176,7 @@ static bool IsPath(char adj)
 
 void Game::LoadPaths(const std::string& fileName)
 {
+    /*
     std::ifstream file(fileName);
     if (!file.is_open())
     {
@@ -187,13 +188,14 @@ void Game::LoadPaths(const std::string& fileName)
 
     BuildPathGraphVertices(file, txtGrid, nodeGrid);
     BuildPathGraphEdges(txtGrid, nodeGrid);
+     */
 }
 
 void Game::BuildPathGraphVertices(std::ifstream& file,
                                   std::vector<std::vector<char>>& txtGrid,
                                   std::vector<std::vector<PathNode*>> &nodeGrid)
 {
-
+    /*
     const float STARTX = 34.0f;
     const float STARTY = 34.0f;
     const float SPACING = 16.0f;
@@ -314,13 +316,14 @@ void Game::BuildPathGraphVertices(std::ifstream& file,
         }
 
     }
-
+*/
 }
 
 
 void Game::BuildPathGraphEdges(std::vector<std::vector<char>>& txtGrid,
                                std::vector<std::vector<PathNode*>> &nodeGrid)
 {
+    /*
     // Now hook up paths
     size_t numRows = nodeGrid.size();
     size_t numCols = nodeGrid[0].size();
@@ -353,7 +356,7 @@ void Game::BuildPathGraphEdges(std::vector<std::vector<char>>& txtGrid,
     tempo[1]->AddAdjacent(tempo[0]);
     tempo[0]->AddAdjacent(tempo[1]);
 
-
+*/
 }
 
 void Game::RunLoop()

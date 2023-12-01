@@ -95,7 +95,7 @@ void Pacman::OnUpdate(float deltaTime)
     else {
         if (velocity.y > 0.f) {
             mCurrentDirection = Vector2::NegUnitY;
-            mDrawComponent->FlipVertically(true);
+            mDrawComponent->FlipVertically(false);
         }
         else if (velocity.y < 0.f) {
             mCurrentDirection = Vector2::UnitY;
@@ -141,8 +141,12 @@ void Pacman::UpdateAnimations()
             mDrawComponent->SetAnimation("right");
             mDrawComponent->SetIsPaused(false);
         }
-        else if(velocity.y != .0f) {
+        else if(velocity.y < .0f) {
             mDrawComponent->SetAnimation("up");
+            mDrawComponent->SetIsPaused(false);
+        }
+        else if(velocity.y > .0f) {
+            mDrawComponent->SetAnimation("down");
             mDrawComponent->SetIsPaused(false);
         }
         else {
