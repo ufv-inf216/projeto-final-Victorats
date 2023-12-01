@@ -59,3 +59,5 @@
 1237	2468	7230908702554690	p5-pacman.exe	6866db6622bcd2bd
 5	1157	7230909126610765	CMakeFiles/p5-pacman.dir/Source/Actors/Pacman.cpp.obj	ef00deb590e5bccb
 1158	2225	7230909137075704	p5-pacman.exe	6866db6622bcd2bd
+6	2022	7230943057352635	CMakeFiles/p5-pacman.dir/Source/Game.cpp.obj	6e6df84d4d9bc5cf
+2023	3223	7230943069247119	p5-pacman.exe	6866db6622bcd2bd

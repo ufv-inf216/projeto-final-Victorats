@@ -73,7 +73,7 @@ void Game::InitializeActors()
     // Background
     auto* background = new Actor(this);
     background->SetPosition(Vector2(234.0f, 258.0f));
-    new DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 448, 496);
+    new DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 480, 480);
 
     LoadLevel("../Assets/Levels/Level.txt");
     LoadPaths("../Assets/Levels/Paths.txt");
