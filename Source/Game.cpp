@@ -105,7 +105,7 @@ void Game::SetGameState(State gameState)
 
 void Game::LoadLevel(const std::string& levelPath)
 {
-    const float STARTX = 16.0f;
+    const float STARTX = 32.0f;
     const float STARTY = 32.0f;
     const float SPACING = 32.0f;
 

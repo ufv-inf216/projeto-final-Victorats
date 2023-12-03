@@ -11,7 +11,7 @@
 Wall::Wall(Game* game)
         :Actor(game)
 {
-    new AABBColliderComponent(this, 0, 0, 16, 16, ColliderLayer::Wall);
+    new AABBColliderComponent(this, 0, 0, 32, 32, ColliderLayer::Wall);
 
 //    auto v1 = mColliderComponent->GetMin();
 //    auto v4 = mColliderComponent->GetMax();
