@@ -26,6 +26,10 @@ Pacman::Pacman(Game* game, int _id,
     mDrawComponent->SetAnimFPS(10.0f);
     mRigidBodyComponent = new RigidBodyComponent(this);
     mColliderComponent = new AABBColliderComponent(this, 0, 0, 32, 32, ColliderLayer::Player);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 //    auto v1 = mColliderComponent->GetMin();
 //    auto v4 = mColliderComponent->GetMax();
 //
