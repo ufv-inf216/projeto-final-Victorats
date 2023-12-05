@@ -53,7 +53,12 @@ public:
     SDL_Texture* LoadTexture(const std::string& texturePath);
 
     // Game-specific
-    const class Pacman* GetPlayer() { return mPacman; }
+    std::vector<class Pacman*> GetPlayer() {
+        std::vector<class Pacman*> pacmans;
+        pacmans.push_back(mPacman);
+        pacmans.push_back(mPlayer2);
+        return pacmans;
+    }
 
     void SetGameState(State gameState);
     bool GetGameState() { return mGameState; }

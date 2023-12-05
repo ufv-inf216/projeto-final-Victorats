@@ -128,7 +128,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
 
                 else if(aux[j] == 'M'){
 
-                    mPacman = new Pacman(this,1);
+                    mPacman = new Pacman(this,1,125);
                     mPacman->SetPosition(pos);
                     auto* wall = new Wall(this,"%",ColliderLayer::Node);
                     wall->SetPosition(pos);
@@ -139,7 +139,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
 
                 }
                 else if(aux[j] == 'A'){
-                    mPlayer2 =  new Pacman(this,2);
+                    mPlayer2 =  new Pacman(this,2,125);
                     mPlayer2->SetPosition(pos);
                     auto* wall = new Wall(this,"%",ColliderLayer::Node);
                     wall->SetPosition(pos);
@@ -362,17 +362,6 @@ void Game::RemoveWall(Wall* item)
     auto iter = std::find(mWalls.begin(), mWalls.end(), item);
     mWalls.erase(iter);
 }
-
-/*void Game::AddPathNode(class PathNode *node)
-{
-    mPathNodes.emplace_back(node);
-}
-
-void Game::RemovePathNode(class PathNode *node)
-{
-    auto iter = std::find(mPathNodes.begin(), mPathNodes.end(), node);
-    mPathNodes.erase(iter);
-}*/
 
 void Game::GenerateOutput()
 {

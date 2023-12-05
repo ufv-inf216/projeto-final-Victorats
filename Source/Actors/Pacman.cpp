@@ -17,7 +17,7 @@ Pacman::Pacman(Game* game, int _id,
 {   id = _id;
     mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Pacman/globinsprite2.png", "../Assets/Sprites/Pacman/goblin.json");
     mDrawComponent->AddAnimation("idle", {0});
-    mDrawComponent->AddAnimation("dead", {0});
+    mDrawComponent->AddAnimation("dead", {0,1,2,3,4,5,6,7,8,9});
     mDrawComponent->AddAnimation("right", {4,5,6,7});
     mDrawComponent->AddAnimation("up", {8,9});
     mDrawComponent->AddAnimation("down", {1,2,3});
@@ -26,10 +26,7 @@ Pacman::Pacman(Game* game, int _id,
     mDrawComponent->SetAnimFPS(10.0f);
     mRigidBodyComponent = new RigidBodyComponent(this);
     mColliderComponent = new AABBColliderComponent(this, 0, 0, 32, 32, ColliderLayer::Player);
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 //    auto v1 = mColliderComponent->GetMin();
 //    auto v4 = mColliderComponent->GetMax();
 //
@@ -61,6 +58,9 @@ void Pacman::OnProcessInput(const uint8_t* state)
             mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mForwardSpeed));
         } else {
             mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, 0));
+        }
+        if(state[SDL_SCANCODE_SPACE]){
+            Die();
         }
     }
     else if (id == 2){
@@ -136,6 +136,7 @@ void Pacman::Die()
     mRigidBodyComponent->SetVelocity(Vector2::Zero);
     mRigidBodyComponent->SetEnabled(false);
     mColliderComponent->SetEnabled(false);
+    mDrawComponent->SetIsVisible(false);
 }
 
 void Pacman::Start()
@@ -189,6 +190,13 @@ void Pacman::DetectCollision()
     for(auto *item : mGame->GetItems()) {
         colliders.emplace_back(item->GetComponent<AABBColliderComponent>());
     }
+    for(auto *pacman : mGame->GetPlayer()) {
+        if (pacman != this) {
+            colliders.emplace_back(pacman->GetComponent<AABBColliderComponent>());
+        }
+    }
+
+
 
     mColliderComponent->DetectCollision(mRigidBodyComponent, colliders);
 }
@@ -212,7 +220,9 @@ void Pacman::OnCollision(std::vector<AABBColliderComponent::Overlap>& responses)
                 collision.target->GetOwner()->SetState(ActorState::Destroy);
 
             }
+
         }
+
 
     }
 }
