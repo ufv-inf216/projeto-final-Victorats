@@ -31,26 +31,8 @@ add_executable(${PROJECT_NAME}
         Source/Components/DrawComponents/DrawAnimatedComponent.h
         Source/Actors/Item.cpp
         Source/Actors/Item.h
-        Source/Actors/Ghost/Ghost.cpp
-        Source/Actors/Ghost/Ghost.h
         Source/Actors/Wall.h
         Source/Actors/Wall.cpp
-        Source/Actors/PathNode.cpp
-        Source/Actors/PathNode.h
-        Source/Components/AIComponents/FSMComponent.cpp
-        Source/Components/AIComponents/FSMComponent.h
-        Source/Components/AIComponents/FSMState.cpp
-        Source/Components/AIComponents/FSMState.h
-        Source/Actors/Ghost/States/ScatterState.cpp
-        Source/Actors/Ghost/States/ScatterState.h
-        Source/Actors/Ghost/States/GhostState.cpp
-        Source/Actors/Ghost/States/GhostState.h
-        Source/Actors/Ghost/States/ChaseState.cpp
-        Source/Actors/Ghost/States/ChaseState.h
-        Source/Actors/Ghost/States/FrightenedState.cpp
-        Source/Actors/Ghost/States/FrightenedState.h
-        Source/Actors/Ghost/States/DeadState.cpp
-        Source/Actors/Ghost/States/DeadState.h
 )
 
 ####### DO NOT EDIT BELLOW

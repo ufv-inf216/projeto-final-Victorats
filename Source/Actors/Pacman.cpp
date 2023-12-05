@@ -1,15 +1,12 @@
 //
 // Created by Lucas N. Ferreira on 03/08/23.
 //
-
 #include "Pacman.h"
-#include "PathNode.h"
-#include "Ghost/Ghost.h"
 #include "../Game.h"
 #include "../Actors/Item.h"
 #include "../Actors/Wall.h"
 #include "../Components/DrawComponents/DrawAnimatedComponent.h"
-#include "../Components/AIComponents/FSMComponent.h"
+
 
 Pacman::Pacman(Game* game,
                const float forwardSpeed)
@@ -122,9 +119,6 @@ void Pacman::Start()
     mColliderComponent->SetEnabled(true);
     mDrawComponent->SetAnimation("idle");
 
-    if (mSpawnNode) {
-        SetPosition(mSpawnNode->GetPosition());
-    }
 }
 
 void Pacman::UpdateAnimations()
@@ -169,14 +163,6 @@ void Pacman::DetectCollision()
         colliders.emplace_back(item->GetComponent<AABBColliderComponent>());
     }
 
-    for(auto *ghost : mGame->GetGhosts()) {
-        colliders.emplace_back(ghost->GetComponent<AABBColliderComponent>());
-    }
-
-    for(auto *node : mGame->GetPathNodes()) {
-        colliders.emplace_back(node->GetComponent<AABBColliderComponent>());
-    }
-
     mColliderComponent->DetectCollision(mRigidBodyComponent, colliders);
 }
 
@@ -198,32 +184,12 @@ void Pacman::OnCollision(std::vector<AABBColliderComponent::Overlap>& responses)
                 // Destroy power pellet
                 collision.target->GetOwner()->SetState(ActorState::Destroy);
 
-                // Make ghosts frighten
-                for (auto ghost : mGame->GetGhosts()) {
-                    auto *ghostFSM = ghost->GetComponent<FSMComponent>();
-                    if(!ghostFSM->IsInState("dead")) {
-                        ghostFSM->SetState("frightened");
-                    }
-                }
             }
         }
-        else if(collision.target->GetLayer() == ColliderLayer::Enemy)
+        else if(collision.target->GetLayer() == ColliderLayer::Wall)
         {
-            auto *ghost = dynamic_cast<Ghost *>(collision.target->GetOwner());
-            auto *ghostFSM = ghost->GetComponent<FSMComponent>();
-
-            if(ghostFSM->IsInState("frightened")) {
-                // kill ghost
-                ghostFSM->SetState("dead");
-            }
-            else if(!ghostFSM->IsInState("dead")) {
-                // kill pacman
-                Die();
-            }
-        }
-        else if(collision.target->GetLayer() == ColliderLayer::Node)
-        {
-            mPrevNode = dynamic_cast<PathNode *>(collision.target->GetOwner());
+            // TODO [Parte 2]: https://ufv-inf216.lucasnferreira.com/p5-pacman
+            mRigidBodyComponent->SetVelocity(Vector2::Zero);
         }
     }
 }

@@ -16,12 +16,11 @@
 #include "Actors/Actor.h"
 #include "Actors/Pacman.h"
 #include "Actors/Item.h"
-#include "Actors/Ghost/Ghost.h"
+
 #include "Actors/Wall.h"
 #include "Components/DrawComponents/DrawComponent.h"
 #include "Components/DrawComponents/DrawSpriteComponent.h"
-#include "Components/AIComponents/FSMComponent.h"
-#include "Actors/PathNode.h"
+
 
 Game::Game(int windowWidth, int windowHeight)
         :mWindow(nullptr)
@@ -43,8 +42,11 @@ bool Game::Initialize()
         SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
         return false;
     }
-
-    mWindow = SDL_CreateWindow("P4: Super Pacman Bros", 0, 0, mWindowWidth, mWindowHeight, 0);
+    SDL_DisplayMode DM;
+    SDL_GetCurrentDisplayMode(0, &DM);
+    auto Width = DM.w;
+    auto Height = DM.h;
+    mWindow = SDL_CreateWindow("P4: Super Pacman Bros", (Width - mWindowWidth) / 2, (Height - mWindowHeight)/2, mWindowWidth, mWindowHeight, 0);
     if (!mWindow)
     {
         SDL_Log("Failed to create window: %s", SDL_GetError());
@@ -84,10 +86,10 @@ void Game::InitializeActors()
 void Game::SetGameState(State gameState)
 {
     if (gameState == Intro)
-    {
+
         // Reset pacman
         mPacman->Start();
-
+        /*
         // Reset ghosts
         for(auto *ghost : mGhosts) {
             ghost->Start();
@@ -99,13 +101,13 @@ void Game::SetGameState(State gameState)
             ghost->GetComponent<FSMComponent>()->Start("scatter");
         }
     }
-
+    */
     mGameState = gameState;
 }
 
 void Game::LoadLevel(const std::string& levelPath)
 {
-    const float STARTX = 32.0f;
+    const float STARTX = 16.0f;
     const float STARTY = 32.0f;
     const float SPACING = 32.0f;
 
@@ -148,15 +150,6 @@ void Game::LoadLevel(const std::string& levelPath)
                 auto* wall = new Wall(this);
                 wall->SetPosition(pos);
             }
-            else if (letter >= '1' && letter <= '4')
-            {
-                Ghost::Type ghostType = static_cast<Ghost::Type>(letter - '1');
-                if (ghostType < GHOST_COUNT)
-                {
-                    auto *ghost = new Ghost(this, ghostType);
-                    ghost->SetPosition(pos);
-                }
-            }
         }
         row++;
     }
@@ -164,9 +157,11 @@ void Game::LoadLevel(const std::string& levelPath)
 
 static bool IsPathNode(char adj)
 {
+
     return adj == 'X' || adj == 'T' || adj == 'G' || adj == 'M' || adj == 'P' ||
            (adj >= '1' && adj <= '4') ||
            (adj >= 'A' && adj <= 'D');
+
 }
 
 static bool IsPath(char adj)
@@ -397,23 +392,6 @@ void Game::ProcessInput()
         }
     }
 
-    // Toggles for debug path views
-    if (!mPrev1Input && state[SDL_SCANCODE_1])
-    {
-        mShowGhostPaths = !mShowGhostPaths;
-    }
-
-    if (!mPrev2Input && state[SDL_SCANCODE_2])
-    {
-        mShowGraph = !mShowGraph;
-        for (auto p : mPathNodes)
-        {
-            p->GetComponent<DrawSpriteComponent>()->SetIsVisible(mShowGraph);
-        }
-    }
-
-    mPrev1Input = static_cast<bool>(state[SDL_SCANCODE_1]);
-    mPrev2Input = static_cast<bool>(state[SDL_SCANCODE_2]);
 }
 
 void Game::UpdateGame()
@@ -479,9 +457,7 @@ void Game::UpdateState(float deltaTime)
     if(mPacman->IsDead())
     {
         mGameState = State::Over;
-        for(auto *ghost : mGhosts) {
-            ghost->Pause();
-        }
+
 
         mRespawnTimer -= deltaTime;
         if(mRespawnTimer <= .0f)
@@ -504,9 +480,7 @@ void Game::UpdateState(float deltaTime)
     if(pellets_count == 0)
     {
         mGameState = State::Won;
-        for(auto *ghost : mGhosts) {
-            ghost->Pause();
-        }
+        
     }
 }
 
@@ -556,7 +530,7 @@ void Game::RemoveDrawable(class DrawComponent *drawable)
     mDrawables.erase(iter);
 }
 
-void Game::AddGhost(Ghost* ghost)
+/*void Game::AddGhost(Ghost* ghost)
 {
     mGhosts.emplace_back(ghost);
 }
@@ -565,7 +539,7 @@ void Game::RemoveGhost(Ghost* ghost)
 {
     auto iter = std::find(mGhosts.begin(), mGhosts.end(), ghost);
     mGhosts.erase(iter);
-}
+}*/
 
 void Game::AddItem(Item* item)
 {
@@ -589,7 +563,7 @@ void Game::RemoveWall(Wall* item)
     mWalls.erase(iter);
 }
 
-void Game::AddPathNode(class PathNode *node)
+/*void Game::AddPathNode(class PathNode *node)
 {
     mPathNodes.emplace_back(node);
 }
@@ -598,7 +572,7 @@ void Game::RemovePathNode(class PathNode *node)
 {
     auto iter = std::find(mPathNodes.begin(), mPathNodes.end(), node);
     mPathNodes.erase(iter);
-}
+}*/
 
 void Game::GenerateOutput()
 {
@@ -625,6 +599,7 @@ void Game::GenerateOutput()
 
 void Game::DebugDrawPaths()
 {
+    /*
     if (mShowGraph)
     {
         SDL_SetRenderDrawColor(mRenderer, 127, 127, 127, 255);
@@ -649,7 +624,7 @@ void Game::DebugDrawPaths()
         for (auto g : mGhosts) {
             g->DebugDrawPath(mRenderer);
         }
-    }
+    }*/
 }
 
 SDL_Texture* Game::LoadTexture(const std::string& texturePath) {

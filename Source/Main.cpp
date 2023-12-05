@@ -9,7 +9,7 @@
 #include "Game.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 470;
+const int SCREEN_WIDTH = 520;
 const int SCREEN_HEIGHT = 520;
 
 int main(int argc, char** argv)
