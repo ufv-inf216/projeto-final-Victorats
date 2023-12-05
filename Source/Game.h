@@ -115,6 +115,7 @@ private:
 
     // Game-specific
     class Pacman *mPacman;
+    
     std::vector<class Item*> mItems;
     std::vector<class Wall*> mWalls;
     std::vector<class Ghost*> mGhosts;
