@@ -15,6 +15,7 @@ Pacman::Pacman(Game* game, int _id,
         ,mIsDead(false)
         , mSpawnNode(nullptr)
 {   id = _id;
+    mDyingTimer = 0.5;
     mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Pacman/globinsprite2.png", "../Assets/Sprites/Pacman/goblin.json");
     mDrawComponent->AddAnimation("idle", {0});
     mDrawComponent->AddAnimation("dead", {0,1,2,3,4,5,6,7,8,9});
@@ -62,6 +63,7 @@ void Pacman::OnProcessInput(const uint8_t* state)
         if(state[SDL_SCANCODE_SPACE]){
             Die();
         }
+
     }
     else if (id == 2){
         if (state[SDL_SCANCODE_RIGHT]) {
@@ -90,6 +92,9 @@ void Pacman::OnUpdate(float deltaTime)
     if(mGame->GetGameState() != Game::State::Started) {
         return;
     }
+
+    if(mIsDead)
+        mDyingTimer -= deltaTime;
 
     // Detect and resolve collisions
     DetectCollision();
@@ -136,7 +141,8 @@ void Pacman::Die()
     mRigidBodyComponent->SetVelocity(Vector2::Zero);
     mRigidBodyComponent->SetEnabled(false);
     mColliderComponent->SetEnabled(false);
-    mDrawComponent->SetIsVisible(false);
+
+
 }
 
 void Pacman::Start()

@@ -18,6 +18,8 @@ public:
 
     class PathNode* GetSpawnNode() const { return mSpawnNode; }
     void SetSpawnNode(class PathNode* node) { mSpawnNode = node; }
+    float mDyingTimer;
+
 
     class PathNode* GetPrevNode() const;
     Vector2 GetPointInFrontOf(float dist) const;
@@ -29,6 +31,7 @@ public:
 
 private:
     void UpdateAnimations();
+
 
     bool mIsDead;
     float mForwardSpeed;

@@ -253,18 +253,24 @@ void Game::UpdateActors(float deltaTime)
 
 void Game::UpdateState(float deltaTime)
 {
-    // If pacman is dead, respawn after some time
-    if(mPacman->IsDead())
+
+    if((mPacman->IsDead() && mPacman->mDyingTimer <= 0) || (mPlayer2->IsDead() && mPlayer2->mDyingTimer <=0))
     {
-        mGameState = State::Over;
 
-
-        mRespawnTimer -= deltaTime;
-        if(mRespawnTimer <= .0f)
+        while (!mActors.empty())
         {
-            mRespawnTimer = RESPAWN_TIME;
-            SetGameState(State::Intro);
+            delete mActors.back();
         }
+
+
+        mItems.clear();
+        mWalls.clear();
+
+
+        mGameState = State::Intro;
+        mRespawnTimer = RESPAWN_TIME;
+
+        InitializeActors();
     }
 
     // Count number of pellets in game
@@ -330,16 +336,7 @@ void Game::RemoveDrawable(class DrawComponent *drawable)
     mDrawables.erase(iter);
 }
 
-/*void Game::AddGhost(Ghost* ghost)
-{
-    mGhosts.emplace_back(ghost);
-}
 
-void Game::RemoveGhost(Ghost* ghost)
-{
-    auto iter = std::find(mGhosts.begin(), mGhosts.end(), ghost);
-    mGhosts.erase(iter);
-}*/
 
 void Game::AddItem(Item* item)
 {

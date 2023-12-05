@@ -138,4 +138,6 @@ private:
     int mGameState = State::Intro;
 
     float mRespawnTimer = 0.0f;
+
+    void RestartGame();
 };
