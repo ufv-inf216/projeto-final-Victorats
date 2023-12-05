@@ -128,13 +128,20 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
 
                 else if(aux[j] == 'M'){
 
-                    mPacman = new Pacman(this);
+                    mPacman = new Pacman(this,1);
                     mPacman->SetPosition(pos);
                     auto* wall = new Wall(this,"%",ColliderLayer::Node);
                     wall->SetPosition(pos);
                 }
                 else if(aux[j] == '%'){
                     auto* wall = new Wall(this,std::string(1,aux[j]),ColliderLayer::Node);
+                    wall->SetPosition(pos);
+
+                }
+                else if(aux[j] == 'A'){
+                    mPlayer2 =  new Pacman(this,2);
+                    mPlayer2->SetPosition(pos);
+                    auto* wall = new Wall(this,"%",ColliderLayer::Node);
                     wall->SetPosition(pos);
 
                 }

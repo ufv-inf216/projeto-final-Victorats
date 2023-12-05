@@ -152,150 +152,6 @@ Source/Actors/Actor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Actor.cpp.s
 .PHONY : Source/Actors/Actor.cpp.s
 
-Source/Actors/Ghost/Ghost.obj: Source/Actors/Ghost/Ghost.cpp.obj
-.PHONY : Source/Actors/Ghost/Ghost.obj
-
-# target to build an object file
-Source/Actors/Ghost/Ghost.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/Ghost.cpp.obj
-.PHONY : Source/Actors/Ghost/Ghost.cpp.obj
-
-Source/Actors/Ghost/Ghost.i: Source/Actors/Ghost/Ghost.cpp.i
-.PHONY : Source/Actors/Ghost/Ghost.i
-
-# target to preprocess a source file
-Source/Actors/Ghost/Ghost.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/Ghost.cpp.i
-.PHONY : Source/Actors/Ghost/Ghost.cpp.i
-
-Source/Actors/Ghost/Ghost.s: Source/Actors/Ghost/Ghost.cpp.s
-.PHONY : Source/Actors/Ghost/Ghost.s
-
-# target to generate assembly for a file
-Source/Actors/Ghost/Ghost.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/Ghost.cpp.s
-.PHONY : Source/Actors/Ghost/Ghost.cpp.s
-
-Source/Actors/Ghost/States/ChaseState.obj: Source/Actors/Ghost/States/ChaseState.cpp.obj
-.PHONY : Source/Actors/Ghost/States/ChaseState.obj
-
-# target to build an object file
-Source/Actors/Ghost/States/ChaseState.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/ChaseState.cpp.obj
-.PHONY : Source/Actors/Ghost/States/ChaseState.cpp.obj
-
-Source/Actors/Ghost/States/ChaseState.i: Source/Actors/Ghost/States/ChaseState.cpp.i
-.PHONY : Source/Actors/Ghost/States/ChaseState.i
-
-# target to preprocess a source file
-Source/Actors/Ghost/States/ChaseState.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/ChaseState.cpp.i
-.PHONY : Source/Actors/Ghost/States/ChaseState.cpp.i
-
-Source/Actors/Ghost/States/ChaseState.s: Source/Actors/Ghost/States/ChaseState.cpp.s
-.PHONY : Source/Actors/Ghost/States/ChaseState.s
-
-# target to generate assembly for a file
-Source/Actors/Ghost/States/ChaseState.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/ChaseState.cpp.s
-.PHONY : Source/Actors/Ghost/States/ChaseState.cpp.s
-
-Source/Actors/Ghost/States/DeadState.obj: Source/Actors/Ghost/States/DeadState.cpp.obj
-.PHONY : Source/Actors/Ghost/States/DeadState.obj
-
-# target to build an object file
-Source/Actors/Ghost/States/DeadState.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/DeadState.cpp.obj
-.PHONY : Source/Actors/Ghost/States/DeadState.cpp.obj
-
-Source/Actors/Ghost/States/DeadState.i: Source/Actors/Ghost/States/DeadState.cpp.i
-.PHONY : Source/Actors/Ghost/States/DeadState.i
-
-# target to preprocess a source file
-Source/Actors/Ghost/States/DeadState.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/DeadState.cpp.i
-.PHONY : Source/Actors/Ghost/States/DeadState.cpp.i
-
-Source/Actors/Ghost/States/DeadState.s: Source/Actors/Ghost/States/DeadState.cpp.s
-.PHONY : Source/Actors/Ghost/States/DeadState.s
-
-# target to generate assembly for a file
-Source/Actors/Ghost/States/DeadState.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/DeadState.cpp.s
-.PHONY : Source/Actors/Ghost/States/DeadState.cpp.s
-
-Source/Actors/Ghost/States/FrightenedState.obj: Source/Actors/Ghost/States/FrightenedState.cpp.obj
-.PHONY : Source/Actors/Ghost/States/FrightenedState.obj
-
-# target to build an object file
-Source/Actors/Ghost/States/FrightenedState.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/FrightenedState.cpp.obj
-.PHONY : Source/Actors/Ghost/States/FrightenedState.cpp.obj
-
-Source/Actors/Ghost/States/FrightenedState.i: Source/Actors/Ghost/States/FrightenedState.cpp.i
-.PHONY : Source/Actors/Ghost/States/FrightenedState.i
-
-# target to preprocess a source file
-Source/Actors/Ghost/States/FrightenedState.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/FrightenedState.cpp.i
-.PHONY : Source/Actors/Ghost/States/FrightenedState.cpp.i
-
-Source/Actors/Ghost/States/FrightenedState.s: Source/Actors/Ghost/States/FrightenedState.cpp.s
-.PHONY : Source/Actors/Ghost/States/FrightenedState.s
-
-# target to generate assembly for a file
-Source/Actors/Ghost/States/FrightenedState.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/FrightenedState.cpp.s
-.PHONY : Source/Actors/Ghost/States/FrightenedState.cpp.s
-
-Source/Actors/Ghost/States/GhostState.obj: Source/Actors/Ghost/States/GhostState.cpp.obj
-.PHONY : Source/Actors/Ghost/States/GhostState.obj
-
-# target to build an object file
-Source/Actors/Ghost/States/GhostState.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/GhostState.cpp.obj
-.PHONY : Source/Actors/Ghost/States/GhostState.cpp.obj
-
-Source/Actors/Ghost/States/GhostState.i: Source/Actors/Ghost/States/GhostState.cpp.i
-.PHONY : Source/Actors/Ghost/States/GhostState.i
-
-# target to preprocess a source file
-Source/Actors/Ghost/States/GhostState.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/GhostState.cpp.i
-.PHONY : Source/Actors/Ghost/States/GhostState.cpp.i
-
-Source/Actors/Ghost/States/GhostState.s: Source/Actors/Ghost/States/GhostState.cpp.s
-.PHONY : Source/Actors/Ghost/States/GhostState.s
-
-# target to generate assembly for a file
-Source/Actors/Ghost/States/GhostState.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/GhostState.cpp.s
-.PHONY : Source/Actors/Ghost/States/GhostState.cpp.s
-
-Source/Actors/Ghost/States/ScatterState.obj: Source/Actors/Ghost/States/ScatterState.cpp.obj
-.PHONY : Source/Actors/Ghost/States/ScatterState.obj
-
-# target to build an object file
-Source/Actors/Ghost/States/ScatterState.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/ScatterState.cpp.obj
-.PHONY : Source/Actors/Ghost/States/ScatterState.cpp.obj
-
-Source/Actors/Ghost/States/ScatterState.i: Source/Actors/Ghost/States/ScatterState.cpp.i
-.PHONY : Source/Actors/Ghost/States/ScatterState.i
-
-# target to preprocess a source file
-Source/Actors/Ghost/States/ScatterState.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/ScatterState.cpp.i
-.PHONY : Source/Actors/Ghost/States/ScatterState.cpp.i
-
-Source/Actors/Ghost/States/ScatterState.s: Source/Actors/Ghost/States/ScatterState.cpp.s
-.PHONY : Source/Actors/Ghost/States/ScatterState.s
-
-# target to generate assembly for a file
-Source/Actors/Ghost/States/ScatterState.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Ghost/States/ScatterState.cpp.s
-.PHONY : Source/Actors/Ghost/States/ScatterState.cpp.s
-
 Source/Actors/Item.obj: Source/Actors/Item.cpp.obj
 .PHONY : Source/Actors/Item.obj
 
@@ -344,30 +200,6 @@ Source/Actors/Pacman.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Pacman.cpp.s
 .PHONY : Source/Actors/Pacman.cpp.s
 
-Source/Actors/PathNode.obj: Source/Actors/PathNode.cpp.obj
-.PHONY : Source/Actors/PathNode.obj
-
-# target to build an object file
-Source/Actors/PathNode.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/PathNode.cpp.obj
-.PHONY : Source/Actors/PathNode.cpp.obj
-
-Source/Actors/PathNode.i: Source/Actors/PathNode.cpp.i
-.PHONY : Source/Actors/PathNode.i
-
-# target to preprocess a source file
-Source/Actors/PathNode.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/PathNode.cpp.i
-.PHONY : Source/Actors/PathNode.cpp.i
-
-Source/Actors/PathNode.s: Source/Actors/PathNode.cpp.s
-.PHONY : Source/Actors/PathNode.s
-
-# target to generate assembly for a file
-Source/Actors/PathNode.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/PathNode.cpp.s
-.PHONY : Source/Actors/PathNode.cpp.s
-
 Source/Actors/Wall.obj: Source/Actors/Wall.cpp.obj
 .PHONY : Source/Actors/Wall.obj
 
@@ -391,54 +223,6 @@ Source/Actors/Wall.s: Source/Actors/Wall.cpp.s
 Source/Actors/Wall.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Actors/Wall.cpp.s
 .PHONY : Source/Actors/Wall.cpp.s
-
-Source/Components/AIComponents/FSMComponent.obj: Source/Components/AIComponents/FSMComponent.cpp.obj
-.PHONY : Source/Components/AIComponents/FSMComponent.obj
-
-# target to build an object file
-Source/Components/AIComponents/FSMComponent.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Components/AIComponents/FSMComponent.cpp.obj
-.PHONY : Source/Components/AIComponents/FSMComponent.cpp.obj
-
-Source/Components/AIComponents/FSMComponent.i: Source/Components/AIComponents/FSMComponent.cpp.i
-.PHONY : Source/Components/AIComponents/FSMComponent.i
-
-# target to preprocess a source file
-Source/Components/AIComponents/FSMComponent.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Components/AIComponents/FSMComponent.cpp.i
-.PHONY : Source/Components/AIComponents/FSMComponent.cpp.i
-
-Source/Components/AIComponents/FSMComponent.s: Source/Components/AIComponents/FSMComponent.cpp.s
-.PHONY : Source/Components/AIComponents/FSMComponent.s
-
-# target to generate assembly for a file
-Source/Components/AIComponents/FSMComponent.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Components/AIComponents/FSMComponent.cpp.s
-.PHONY : Source/Components/AIComponents/FSMComponent.cpp.s
-
-Source/Components/AIComponents/FSMState.obj: Source/Components/AIComponents/FSMState.cpp.obj
-.PHONY : Source/Components/AIComponents/FSMState.obj
-
-# target to build an object file
-Source/Components/AIComponents/FSMState.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Components/AIComponents/FSMState.cpp.obj
-.PHONY : Source/Components/AIComponents/FSMState.cpp.obj
-
-Source/Components/AIComponents/FSMState.i: Source/Components/AIComponents/FSMState.cpp.i
-.PHONY : Source/Components/AIComponents/FSMState.i
-
-# target to preprocess a source file
-Source/Components/AIComponents/FSMState.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Components/AIComponents/FSMState.cpp.i
-.PHONY : Source/Components/AIComponents/FSMState.cpp.i
-
-Source/Components/AIComponents/FSMState.s: Source/Components/AIComponents/FSMState.cpp.s
-.PHONY : Source/Components/AIComponents/FSMState.s
-
-# target to generate assembly for a file
-Source/Components/AIComponents/FSMState.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\p5-pacman.dir\build.make CMakeFiles/p5-pacman.dir/Source/Components/AIComponents/FSMState.cpp.s
-.PHONY : Source/Components/AIComponents/FSMState.cpp.s
 
 Source/Components/ColliderComponents/AABBColliderComponent.obj: Source/Components/ColliderComponents/AABBColliderComponent.cpp.obj
 .PHONY : Source/Components/ColliderComponents/AABBColliderComponent.obj
@@ -740,42 +524,15 @@ help:
 	@echo ... Source/Actors/Actor.obj
 	@echo ... Source/Actors/Actor.i
 	@echo ... Source/Actors/Actor.s
-	@echo ... Source/Actors/Ghost/Ghost.obj
-	@echo ... Source/Actors/Ghost/Ghost.i
-	@echo ... Source/Actors/Ghost/Ghost.s
-	@echo ... Source/Actors/Ghost/States/ChaseState.obj
-	@echo ... Source/Actors/Ghost/States/ChaseState.i
-	@echo ... Source/Actors/Ghost/States/ChaseState.s
-	@echo ... Source/Actors/Ghost/States/DeadState.obj
-	@echo ... Source/Actors/Ghost/States/DeadState.i
-	@echo ... Source/Actors/Ghost/States/DeadState.s
-	@echo ... Source/Actors/Ghost/States/FrightenedState.obj
-	@echo ... Source/Actors/Ghost/States/FrightenedState.i
-	@echo ... Source/Actors/Ghost/States/FrightenedState.s
-	@echo ... Source/Actors/Ghost/States/GhostState.obj
-	@echo ... Source/Actors/Ghost/States/GhostState.i
-	@echo ... Source/Actors/Ghost/States/GhostState.s
-	@echo ... Source/Actors/Ghost/States/ScatterState.obj
-	@echo ... Source/Actors/Ghost/States/ScatterState.i
-	@echo ... Source/Actors/Ghost/States/ScatterState.s
 	@echo ... Source/Actors/Item.obj
 	@echo ... Source/Actors/Item.i
 	@echo ... Source/Actors/Item.s
 	@echo ... Source/Actors/Pacman.obj
 	@echo ... Source/Actors/Pacman.i
 	@echo ... Source/Actors/Pacman.s
-	@echo ... Source/Actors/PathNode.obj
-	@echo ... Source/Actors/PathNode.i
-	@echo ... Source/Actors/PathNode.s
 	@echo ... Source/Actors/Wall.obj
 	@echo ... Source/Actors/Wall.i
 	@echo ... Source/Actors/Wall.s
-	@echo ... Source/Components/AIComponents/FSMComponent.obj
-	@echo ... Source/Components/AIComponents/FSMComponent.i
-	@echo ... Source/Components/AIComponents/FSMComponent.s
-	@echo ... Source/Components/AIComponents/FSMState.obj
-	@echo ... Source/Components/AIComponents/FSMState.i
-	@echo ... Source/Components/AIComponents/FSMState.s
 	@echo ... Source/Components/ColliderComponents/AABBColliderComponent.obj
 	@echo ... Source/Components/ColliderComponents/AABBColliderComponent.i
 	@echo ... Source/Components/ColliderComponents/AABBColliderComponent.s

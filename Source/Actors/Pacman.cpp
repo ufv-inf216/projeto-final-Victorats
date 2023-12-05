@@ -8,13 +8,13 @@
 #include "../Components/DrawComponents/DrawAnimatedComponent.h"
 
 
-Pacman::Pacman(Game* game,
+Pacman::Pacman(Game* game, int _id,
                const float forwardSpeed)
         :Actor(game)
         ,mForwardSpeed(forwardSpeed)
         ,mIsDead(false)
         , mSpawnNode(nullptr)
-{
+{   id = _id;
     mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Pacman/globinsprite2.png", "../Assets/Sprites/Pacman/goblin.json");
     mDrawComponent->AddAnimation("idle", {0});
     mDrawComponent->AddAnimation("dead", {0});
@@ -42,28 +42,44 @@ Pacman::Pacman(Game* game,
 
 void Pacman::OnProcessInput(const uint8_t* state)
 {
-    if(state[SDL_SCANCODE_D]){
-        mRigidBodyComponent->SetVelocity(Vector2(mForwardSpeed, 0));
-        mRotation = 0;
-    }
-    else if(state[SDL_SCANCODE_A]) {
-        mRigidBodyComponent->SetVelocity(Vector2(-mForwardSpeed, 0));
-        mRotation = Math::Pi;
-    }
-    else {
-        mRigidBodyComponent->SetVelocity(Vector2(0, mRigidBodyComponent->GetVelocity().y));
-    }
+    if(id == 1) {
+        if (state[SDL_SCANCODE_D]) {
+            mRigidBodyComponent->SetVelocity(Vector2(mForwardSpeed, 0));
+            mRotation = 0;
+        } else if (state[SDL_SCANCODE_A]) {
+            mRigidBodyComponent->SetVelocity(Vector2(-mForwardSpeed, 0));
+            mRotation = Math::Pi;
+        } else {
+            mRigidBodyComponent->SetVelocity(Vector2(0, mRigidBodyComponent->GetVelocity().y));
+        }
 
-    if (state[SDL_SCANCODE_W])
-    {
-        mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, -mForwardSpeed));
+        if (state[SDL_SCANCODE_W]) {
+            mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, -mForwardSpeed));
+        } else if (state[SDL_SCANCODE_S]) {
+            mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mForwardSpeed));
+        } else {
+            mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, 0));
+        }
     }
-    else if (state[SDL_SCANCODE_S])
-    {
-        mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mForwardSpeed));
-    }
-    else {
-        mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, 0));
+    else if (id == 2){
+        if (state[SDL_SCANCODE_RIGHT]) {
+            mRigidBodyComponent->SetVelocity(Vector2(mForwardSpeed, 0));
+            mRotation = 0;
+        } else if (state[SDL_SCANCODE_LEFT]) {
+            mRigidBodyComponent->SetVelocity(Vector2(-mForwardSpeed, 0));
+            mRotation = Math::Pi;
+        } else {
+            mRigidBodyComponent->SetVelocity(Vector2(0, mRigidBodyComponent->GetVelocity().y));
+        }
+
+        if (state[SDL_SCANCODE_UP]) {
+            mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, -mForwardSpeed));
+        } else if (state[SDL_SCANCODE_DOWN]) {
+            mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mForwardSpeed));
+        } else {
+            mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, 0));
+        }
+
     }
 }
 

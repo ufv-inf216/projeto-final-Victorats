@@ -8,7 +8,7 @@
 class Pacman : public Actor
 {
 public:
-    explicit Pacman(Game* game, float forwardSpeed = 100.0f);
+    explicit Pacman(Game* game,  int _id,float forwardSpeed = 100.0f);
 
     void OnProcessInput(const Uint8* keyState) override;
     void OnUpdate(float deltaTime) override;
@@ -32,7 +32,7 @@ private:
 
     bool mIsDead;
     float mForwardSpeed;
-
+    int id;
     class PathNode* mSpawnNode;
     class PathNode* mPrevNode;
 

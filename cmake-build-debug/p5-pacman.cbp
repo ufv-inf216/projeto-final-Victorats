@@ -94,42 +94,6 @@
 		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Actor.h">
 			<Option target="p5-pacman"/>
 		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Ghost/Ghost.cpp">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Ghost/Ghost.h">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Ghost/States/ChaseState.cpp">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Ghost/States/ChaseState.h">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Ghost/States/DeadState.cpp">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Ghost/States/DeadState.h">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Ghost/States/FrightenedState.cpp">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Ghost/States/FrightenedState.h">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Ghost/States/GhostState.cpp">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Ghost/States/GhostState.h">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Ghost/States/ScatterState.cpp">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Ghost/States/ScatterState.h">
-			<Option target="p5-pacman"/>
-		</Unit>
 		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Item.cpp">
 			<Option target="p5-pacman"/>
 		</Unit>
@@ -142,28 +106,10 @@
 		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Pacman.h">
 			<Option target="p5-pacman"/>
 		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/PathNode.cpp">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/PathNode.h">
-			<Option target="p5-pacman"/>
-		</Unit>
 		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Wall.cpp">
 			<Option target="p5-pacman"/>
 		</Unit>
 		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Actors/Wall.h">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Components/AIComponents/FSMComponent.cpp">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Components/AIComponents/FSMComponent.h">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Components/AIComponents/FSMState.cpp">
-			<Option target="p5-pacman"/>
-		</Unit>
-		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Components/AIComponents/FSMState.h">
 			<Option target="p5-pacman"/>
 		</Unit>
 		<Unit filename="C:/Users/Gabriel/Desktop/projetofinal/projeto-final-Victorats/Source/Components/ColliderComponents/AABBColliderComponent.cpp">
