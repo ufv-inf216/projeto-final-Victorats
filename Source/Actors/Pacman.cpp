@@ -93,10 +93,19 @@ void Pacman::OnUpdate(float deltaTime)
         if (velocity.y > 0.f) {
             mCurrentDirection = Vector2::NegUnitY;
             mDrawComponent->FlipVertically(false);
+            if(velocity.x < 0.f) {
+                mCurrentDirection = Vector2::NegUnitX;
+                mDrawComponent->FlipHorizontally(true);
+            }
         }
         else if (velocity.y < 0.f) {
             mCurrentDirection = Vector2::UnitY;
             mDrawComponent->FlipVertically(false);
+
+            if(velocity.x < 0.f) {
+                mCurrentDirection = Vector2::NegUnitX;
+                mDrawComponent->FlipHorizontally(true);
+            }
         }
     }
 
@@ -186,11 +195,7 @@ void Pacman::OnCollision(std::vector<AABBColliderComponent::Overlap>& responses)
 
             }
         }
-        else if(collision.target->GetLayer() == ColliderLayer::Wall)
-        {
-            // TODO [Parte 2]: https://ufv-inf216.lucasnferreira.com/p5-pacman
-            mRigidBodyComponent->SetVelocity(Vector2::Zero);
-        }
+
     }
 }
 

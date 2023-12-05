@@ -5,10 +5,11 @@
 #pragma once
 
 #include "Actor.h"
+#include <string>
 
 class Wall : public Actor
 {
 public:
-    Wall(Game* game);
+    Wall(Game* game,const std::string &texturePath,ColliderLayer layer);
     ~Wall();
 };

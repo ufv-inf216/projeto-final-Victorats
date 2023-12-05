@@ -75,7 +75,7 @@ void Game::InitializeActors()
     // Background
     auto* background = new Actor(this);
     background->SetPosition(Vector2(234.0f, 258.0f));
-    new DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 480, 480);
+    //new DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 480, 480);
 
     LoadLevel("../Assets/Levels/Level.txt",14,15);
 
@@ -93,6 +93,10 @@ void Game::SetGameState(State gameState)
 
 void Game::LoadLevel(const std::string& levelPath,const int width, const int height)
 {
+    const float STARTX = 16.0f;
+    const float STARTY = 16.0f;
+    const float SPACING = 32.0f;
+
     std::ifstream  levelP;
     levelP.open(levelPath);
     if(!levelP.is_open()){
@@ -101,29 +105,38 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
         return;
     }
     std::string aux;
-    for (int i = 0; i < height; ++i) {
+    for (int i = 0; i <= height; ++i) {
         std::getline(levelP,aux);
-        for (int j = 0; j < width; ++j) {
+
+        for (int j = 0; j <= width; ++j) {
+            Vector2 pos;
+            pos.x = STARTX + SPACING * j;
+            pos.y = STARTY + SPACING * i;
+
+
             if(aux[j] == 'p'){
                 Item* p = new Item(this, Item::Type::Pellet, 4, 4);
-                Vector2 pos(float(j*32),float(i*32));
+
                 p->SetPosition(pos);
             }
             else if(aux[j] == '-'){
 
-                    Vector2 pos(float(j*32),float(i*32));
-                    auto* wall = new Wall(this);
+
+                    auto* wall = new Wall(this,std::string(1,aux[j]),ColliderLayer::Wall);
                     wall->SetPosition(pos);
                 }
 
                 else if(aux[j] == 'M'){
-                Vector2 pos(float(j*32),float(i*32));
-                    pos.x -= 32 / 2.0f;
+
                     mPacman = new Pacman(this);
                     mPacman->SetPosition(pos);
+                    auto* wall = new Wall(this,"%",ColliderLayer::Node);
+                    wall->SetPosition(pos);
                 }
-                else if(aux[j] == '.'){
-                    
+                else if(aux[j] == '%'){
+                    auto* wall = new Wall(this,std::string(1,aux[j]),ColliderLayer::Node);
+                    wall->SetPosition(pos);
+
                 }
             }
         }
