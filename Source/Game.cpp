@@ -77,8 +77,8 @@ void Game::InitializeActors()
     background->SetPosition(Vector2(234.0f, 258.0f));
     new DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 480, 480);
 
-    LoadLevel("../Assets/Levels/Level.txt");
-//    LoadPaths("../Assets/Levels/Paths.txt");
+    LoadLevel("../Assets/Levels/Level.txt",14,15);
+
 
     SetGameState(State::Intro);
 }
@@ -86,273 +86,53 @@ void Game::InitializeActors()
 void Game::SetGameState(State gameState)
 {
     if (gameState == Intro)
-
-        // Reset pacman
         mPacman->Start();
-        /*
-        // Reset ghosts
-        for(auto *ghost : mGhosts) {
-            ghost->Start();
-        }
-    }
-    else if(gameState == Started)
-    {
-        for(auto *ghost : mGhosts) {
-            ghost->GetComponent<FSMComponent>()->Start("scatter");
-        }
-    }
-    */
+
     mGameState = gameState;
 }
 
-void Game::LoadLevel(const std::string& levelPath)
+void Game::LoadLevel(const std::string& levelPath,const int width, const int height)
 {
-    const float STARTX = 16.0f;
-    const float STARTY = 32.0f;
-    const float SPACING = 32.0f;
-
-    std::ifstream file(levelPath);
-    if (!file.is_open())
-    {
-        SDL_Log("Failed to load level: %s", levelPath.c_str());
+    std::ifstream  levelP;
+    levelP.open(levelPath);
+    if(!levelP.is_open()){
+        SDL_Log("Erro ao abrir a imagem");
+        this->Quit();
+        return;
     }
-
-    size_t row = 0;
-    std::string line;
-    while (!file.eof())
-    {
-        std::getline(file, line);
-        for (size_t col = 0; col < line.size(); col++)
-        {
-            Vector2 pos;
-            pos.x = STARTX + SPACING * col;
-            pos.y = STARTY + SPACING * row;
-
-            char letter = line[col];
-            if (letter == 'p')
-            {
+    std::string aux;
+    for (int i = 0; i < height; ++i) {
+        std::getline(levelP,aux);
+        for (int j = 0; j < width; ++j) {
+            if(aux[j] == 'p'){
                 Item* p = new Item(this, Item::Type::Pellet, 4, 4);
+                Vector2 pos(float(j*32),float(i*32));
                 p->SetPosition(pos);
             }
-            else if (letter == 'P')
-            {
-                Item* p = new Item(this, Item::Type::PowerPellet, 16, 16);
-                p->SetPosition(pos);
-            }
-            else if (letter == 'M')
-            {
-                pos.x -= SPACING / 2.0f;
-                mPacman = new Pacman(this);
-                mPacman->SetPosition(pos);
-            }
-            else if (letter == '-')
-            {
-                auto* wall = new Wall(this);
-                wall->SetPosition(pos);
+            else if(aux[j] == '-'){
+
+                    Vector2 pos(float(j*32),float(i*32));
+                    auto* wall = new Wall(this);
+                    wall->SetPosition(pos);
+                }
+
+                else if(aux[j] == 'M'){
+                Vector2 pos(float(j*32),float(i*32));
+                    pos.x -= 32 / 2.0f;
+                    mPacman = new Pacman(this);
+                    mPacman->SetPosition(pos);
+                }
+                else if(aux[j] == '.'){
+                    
+                }
             }
         }
-        row++;
-    }
-}
-
-static bool IsPathNode(char adj)
-{
-
-    return adj == 'X' || adj == 'T' || adj == 'G' || adj == 'M' || adj == 'P' ||
-           (adj >= '1' && adj <= '4') ||
-           (adj >= 'A' && adj <= 'D');
-
-}
-
-static bool IsPath(char adj)
-{
-    return IsPathNode(adj) || adj == '*';
-}
-
-void Game::LoadPaths(const std::string& fileName)
-{
-    /*
-    std::ifstream file(fileName);
-    if (!file.is_open())
-    {
-        SDL_Log("Failed to load paths: %s", fileName.c_str());
-    }
-
-    std::vector<std::vector<char>> txtGrid;
-    std::vector<std::vector<PathNode*>> nodeGrid;
-
-    BuildPathGraphVertices(file, txtGrid, nodeGrid);
-    BuildPathGraphEdges(txtGrid, nodeGrid);
-     */
-}
-
-void Game::BuildPathGraphVertices(std::ifstream& file,
-                                  std::vector<std::vector<char>>& txtGrid,
-                                  std::vector<std::vector<PathNode*>> &nodeGrid)
-{
-    /*
-    const float STARTX = 34.0f;
-    const float STARTY = 34.0f;
-    const float SPACING = 16.0f;
-
-    // TODO [Parte 1.1]: https://ufv-inf216.lucasnferreira.com/p5-pacman
-    std::string line;
-    while (std::getline(file, line)) {
-
-        std::vector<char> row;
-
-        for (char character : line) {
-
-            row.push_back(character);
-        }
-         txtGrid.push_back(row);
-    }
-    bool left = true;
-    nodeGrid.resize(txtGrid.size(), std::vector<PathNode*>(txtGrid[0].size(),nullptr));
-    for(int i = 0; i < txtGrid.size(); ++i){
-        for(int j = 0; j < txtGrid[i].size(); ++j){
-            char aux = txtGrid[i][j];
-            PathNode * node;
-            if(IsPathNode(aux)){
-                if(aux == 'X') {
-                    node  = new PathNode(this, PathNode::Default);
-                    nodeGrid[i][j] = node;
-                    node->SetPosition(Vector2((STARTX + SPACING * j), STARTY + SPACING * i));
-                }
-                if(aux == 'M'){
-                    node = new PathNode(this,PathNode::Default);
-                    nodeGrid[i][j] = node;
-                    node->SetPosition(Vector2((STARTX + SPACING * j) - (SPACING/2.0f),STARTY + SPACING * i));
-                    mPacman->SetSpawnNode(node);
-                }
-                if(aux == 'G'){
-                    node = new PathNode(this,PathNode::Ghost);
-                    nodeGrid[i][j] = node;
-                    node->SetPosition(Vector2((STARTX + SPACING * j),STARTY + SPACING * i));
-                    mGhostPen = node;
-                }
-                if(aux == 'P'){
-                    node = new PathNode(this,PathNode::Ghost);
-                    nodeGrid[i][j] = node;
-                    node->SetPosition(Vector2((STARTX + SPACING * j),STARTY + SPACING * i));
-                }
-                if(aux == '1'){
-                    node = new PathNode(this,PathNode::Default);
-                    nodeGrid[i][j] = node;
-                    node->SetPosition(Vector2((STARTX + SPACING * j),STARTY + SPACING * i));
-                    mGhosts[0]->SetSpawnNode(node);
-
-                }
-                if(aux == '2'){
-                    node = new PathNode(this,PathNode::Default);
-                    nodeGrid[i][j] = node;
-                    node->SetPosition(Vector2((STARTX + SPACING * j),STARTY + SPACING * i));
-                    mGhosts[1]->SetSpawnNode(node);
-
-                }
-                if(aux == '3'){
-                    node = new PathNode(this,PathNode::Ghost);
-                    nodeGrid[i][j] = node;
-                   node->SetPosition(Vector2((STARTX + SPACING * j),STARTY + SPACING * i));
-                    mGhosts[2]->SetSpawnNode(node);
-
-                }
-                if(aux == '4'){
-                    node = new PathNode(this,PathNode::Ghost);
-                    nodeGrid[i][j] = node;
-                   node->SetPosition(Vector2((STARTX + SPACING * j),STARTY + SPACING * i));
-                    mGhosts[3]->SetSpawnNode(node);
-
-                }
-                if(aux == 'A'){
-                    node = new PathNode(this,PathNode::Default);
-                    nodeGrid[i][j] = node;
-                    node->SetPosition(Vector2((STARTX + SPACING * j),STARTY + SPACING * i));
-                    mGhosts[0]->SetScatterNode(node);
-
-
-                }
-                if(aux == 'B'){
-                    node = new PathNode(this,PathNode::Default);
-                    nodeGrid[i][j] = node;
-                    node->SetPosition(Vector2((STARTX + SPACING * j),STARTY + SPACING * i));
-                    mGhosts[1]->SetScatterNode(node);
-
-                }
-                if(aux == 'C'){
-                    node = new PathNode(this,PathNode::Default);
-                    nodeGrid[i][j] = node;
-                   node->SetPosition(Vector2((STARTX + SPACING * j),STARTY + SPACING * i));
-                    mGhosts[2]->SetScatterNode(node);
-
-                }
-                if(aux == 'D'){
-                    node = new PathNode(this,PathNode::Default);
-                    nodeGrid[i][j] = node;
-                    node->SetPosition(Vector2((STARTX + SPACING * j),STARTY + SPACING * i));
-                    mGhosts[3]->SetScatterNode(node);
-
-                }
-                if(aux == 'T'){
-                    node = new PathNode(this, PathNode::Tunnel);
-                    nodeGrid[i][j] = node;
-                    node->SetPosition(Vector2((STARTX + SPACING * j) - (SPACING/2.0f),STARTY + SPACING * i));
-                   if(left){
-                       mTunnelLeft =  node;
-                       left = false;
-                   }
-                   else{
-                       mTunnelRight = node;;
-                   }
-                }
-            }
-            else
-                nodeGrid[i][j] = nullptr;
-        }
-
-    }
-*/
+        levelP.close();
 }
 
 
-void Game::BuildPathGraphEdges(std::vector<std::vector<char>>& txtGrid,
-                               std::vector<std::vector<PathNode*>> &nodeGrid)
-{
-    /*
-    // Now hook up paths
-    size_t numRows = nodeGrid.size();
-    size_t numCols = nodeGrid[0].size();
 
-    // TODO [Parte 1.2]: https://ufv-inf216.lucasnferreira.com/p5-pacman
-    for(int i = 0; i < numRows; i++)
-        for (int j = 0; j < numCols; j++)
-            if(IsPathNode(txtGrid[i][j])) {
-                for (int k = j + 1; k < numCols; k++)
-                    if(!IsPath(txtGrid[i][k])) break;
-                    else if (nodeGrid[i][k] != nullptr){
-                        nodeGrid[i][j]->AddAdjacent(nodeGrid[i][k]);
-                        nodeGrid[i][k]->AddAdjacent(nodeGrid[i][j]);
-                        break;
-                    }
-                for (int k = i + 1; k < numRows; k++)
-                    if(!IsPath(txtGrid[k][j])) break;
-                    else if (nodeGrid[k][j] != nullptr){
-                        nodeGrid[i][j]->AddAdjacent(nodeGrid[k][j]);
-                        nodeGrid[k][j]->AddAdjacent(nodeGrid[i][j]);
-                        break;
-                    }
-            }
 
-    std::vector<PathNode*> tempo;
-
-    for(auto &nodo : mPathNodes)
-        if(nodo->GetType() == PathNode::Tunnel)
-           tempo.push_back(nodo);
-    tempo[1]->AddAdjacent(tempo[0]);
-    tempo[0]->AddAdjacent(tempo[1]);
-
-*/
-}
 
 void Game::RunLoop()
 {
@@ -480,7 +260,7 @@ void Game::UpdateState(float deltaTime)
     if(pellets_count == 0)
     {
         mGameState = State::Won;
-        
+
     }
 }
 
@@ -582,8 +362,7 @@ void Game::GenerateOutput()
     // Clear back buffer
     SDL_RenderClear(mRenderer);
 
-    // Debug Ghost AI
-    DebugDrawPaths();
+
 
     for (auto drawable : mDrawables)
     {
@@ -597,35 +376,7 @@ void Game::GenerateOutput()
     SDL_RenderPresent(mRenderer);
 }
 
-void Game::DebugDrawPaths()
-{
-    /*
-    if (mShowGraph)
-    {
-        SDL_SetRenderDrawColor(mRenderer, 127, 127, 127, 255);
-        for (auto p : mPathNodes)
-        {
-            if (p->GetType() != PathNode::Tunnel)
-            {
-                for (auto n : p->GetAdjacents())
-                {
-                    SDL_RenderDrawLine(mRenderer, static_cast<int>(p->GetPosition().x),
-                                       static_cast<int>(p->GetPosition().y),
-                                       static_cast<int>(n->GetPosition().x),
-                                       static_cast<int>(n->GetPosition().y));
-                }
-            }
-        }
-    }
 
-    if (mShowGhostPaths)
-    {
-        // Now draw ghost paths
-        for (auto g : mGhosts) {
-            g->DebugDrawPath(mRenderer);
-        }
-    }*/
-}
 
 SDL_Texture* Game::LoadTexture(const std::string& texturePath) {
     // Load from file

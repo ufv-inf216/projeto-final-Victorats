@@ -23,7 +23,7 @@ public:
         Won
     };
 
-    static const int GHOST_COUNT = 4;
+
 
     Game(int windowWidth, int windowHeight);
 
@@ -58,9 +58,7 @@ public:
     void SetGameState(State gameState);
     bool GetGameState() { return mGameState; }
 
-    void AddGhost(class Ghost* ghost);
-    void RemoveGhost(class Ghost* ghost);
-    std::vector<class Ghost*>& GetGhosts() { return mGhosts; }
+
 
     void AddItem(class Item* item);
     void RemoveItem(class Item* item);
@@ -70,11 +68,9 @@ public:
     void RemoveWall(class Wall* wall);
     std::vector<class Wall*>& GetWalls() { return mWalls; }
 
-    void AddPathNode(class PathNode* node);
-    void RemovePathNode(class PathNode* node);
-    std::vector<class PathNode*>& GetPathNodes() { return mPathNodes; }
 
-    class PathNode* GetGhostPen() { return mGhostPen; }
+
+
 
 private:
     const float RESPAWN_TIME = 1.1f;
@@ -89,17 +85,9 @@ private:
     void UpdateState(float deltaTime);
 
     // Load data
-    void LoadLevel(const std::string& texturePath);
+    void LoadLevel(const std::string& texturePath, const int width, const int height);
     void LoadPaths(const std::string& fileName);
 
-    // AI stuff
-    void DebugDrawPaths();
-    void BuildPathGraphVertices(std::ifstream& file,
-                                std::vector<std::vector<char>>& txtGrid,
-                                std::vector<std::vector<PathNode*>> &nodeGrid);
-
-    void BuildPathGraphEdges(std::vector<std::vector<char>>& txtGrid,
-                             std::vector<std::vector<PathNode *>> &grid);
 
     // All the actors in the game
     std::vector<class Actor*> mActors;
