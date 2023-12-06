@@ -12,6 +12,8 @@
 #include "Math.h"
 #include <string>
 
+
+
 class Game
 {
 public:
@@ -62,6 +64,14 @@ public:
 
     void SetGameState(State gameState);
     bool GetGameState() { return mGameState; }
+
+    std::vector<class Bomb*> mBombs;
+    void AddBomb(Bomb* bomb);
+    void RemoveBomb(Bomb* bomb);
+
+    std::vector<class Explosion*> mExplosions;
+    void AddExplosion(Explosion* exp);
+    void RemoveExplosion(Explosion* exp);
 
 
 
@@ -131,6 +141,8 @@ private:
     class PathNode* mTunnelRight = nullptr;
     class PathNode* mGhostPen = nullptr;
 
+
+
     bool mShowGraph = false;
     bool mShowGhostPaths = true;
     bool mPrev1Input = false;
@@ -138,7 +150,6 @@ private:
     int mGameState = State::Intro;
 
     float mRespawnTimer = 0.0f;
-
 
     void RestartGame();
 };

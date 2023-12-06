@@ -7,6 +7,7 @@
 #include "../Actors/Wall.h"
 #include "../Components/DrawComponents/DrawAnimatedComponent.h"
 #include "../Actors/Bomb.h"
+#include "../Actors/Explosion.h"
 
 
 Pacman::Pacman(Game* game, int _id,
@@ -96,7 +97,7 @@ void Pacman::OnProcessInput(const uint8_t* state)
 void Pacman::BombCreator(const Vector2& position) {
     if (mQtBombs < 2 && mBombTimer <= 0.0f) {
         Bomb* mBomb = new Bomb(GetGame(), position,this,2);
-
+        mGame->AddBomb(mBomb);
         mQtBombs++;
         mBombTimer = 1.0f;
     }
@@ -222,6 +223,14 @@ void Pacman::DetectCollision()
         }
     }
 
+    for(auto *bomb : mGame->mBombs) {
+        colliders.emplace_back(bomb->GetComponent<AABBColliderComponent>());
+    }
+    /*for(auto *explosion : mGame->mExplosions) {
+
+       // colliders.emplace_back(explosion->GetComponent<AABBColliderComponent>());
+    }*/
+
 
 
     mColliderComponent->DetectCollision(mRigidBodyComponent, colliders);
@@ -246,15 +255,15 @@ void Pacman::OnCollision(std::vector<AABBColliderComponent::Overlap>& responses)
                 collision.target->GetOwner()->SetState(ActorState::Destroy);
 
             }
-            else if(item->GetType() == Bomb::Type::Bombb)
-            {
-                // morre :(
-                Die();
 
             }
 
+        /*if(collision.target->GetLayer() == ColliderLayer::Explosion)
+        {
+            // morre :(
+            Die();
 
-        }
+        }*/
 
 
     }

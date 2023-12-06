@@ -16,10 +16,13 @@
 #include "Actors/Actor.h"
 #include "Actors/Pacman.h"
 #include "Actors/Item.h"
+#include "Actors/Bomb.h"
+#include "Actors/Explosion.h"
 
 #include "Actors/Wall.h"
 #include "Components/DrawComponents/DrawComponent.h"
 #include "Components/DrawComponents/DrawSpriteComponent.h"
+
 
 
 Game::Game(int windowWidth, int windowHeight)
@@ -359,6 +362,26 @@ void Game::RemoveWall(Wall* item)
     auto iter = std::find(mWalls.begin(), mWalls.end(), item);
     mWalls.erase(iter);
 }
+
+void Game::AddBomb(Bomb* bomb) {
+    mBombs.emplace_back(bomb);
+}
+
+void Game::RemoveBomb(Bomb* bomb) {
+    auto iter = std::find(mBombs.begin(), mBombs.end(), bomb);
+
+    mBombs.erase(iter);
+}
+
+void Game::AddExplosion(Explosion *exp) {
+    mExplosions.emplace_back(exp);
+}
+void Game::RemoveExplosion(Explosion *exp) {
+    auto iter = std::find(mExplosions.begin(), mExplosions.end(), exp);
+
+    mExplosions.erase(iter);
+}
+
 
 void Game::GenerateOutput()
 {

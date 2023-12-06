@@ -9,10 +9,7 @@ class Bomb : public Actor
 {
 public:
 
-    enum Type
-    {
-        Bombb,
-    };
+
     Bomb(Game* game, const Vector2& position, Pacman* dono, int range);
 
     void OnUpdate(float deltaTime);
@@ -21,7 +18,6 @@ private:
     Pacman* mOwner;
     class DrawAnimatedComponent* mDrawComponent;
     float mTimer;
-    Type mType;
     const Vector2& mPosition;
     int mRange;
 };

@@ -17,7 +17,8 @@ enum class ColliderLayer
     Wall,
     Item,
     Node,
-    Bomb
+    Bomb,
+    Explosion
 };
 
 enum class CollisionSide
