@@ -95,7 +95,7 @@ void Pacman::OnProcessInput(const uint8_t* state)
 
 void Pacman::BombCreator(const Vector2& position) {
     if (mQtBombs < 2 && mBombTimer <= 0.0f) {
-        Bomb* mBomb = new Bomb(GetGame(), position,this);
+        Bomb* mBomb = new Bomb(GetGame(), position,this,2);
 
         mQtBombs++;
         mBombTimer = 1.0f;
@@ -246,6 +246,13 @@ void Pacman::OnCollision(std::vector<AABBColliderComponent::Overlap>& responses)
                 collision.target->GetOwner()->SetState(ActorState::Destroy);
 
             }
+            else if(item->GetType() == Bomb::Type::Bombb)
+            {
+                // morre :(
+                Die();
+
+            }
+
 
         }
 

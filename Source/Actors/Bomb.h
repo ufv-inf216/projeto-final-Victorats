@@ -13,7 +13,7 @@ public:
     {
         Bombb,
     };
-    Bomb(Game* game, const Vector2& position, Pacman* dono);
+    Bomb(Game* game, const Vector2& position, Pacman* dono, int range);
 
     void OnUpdate(float deltaTime);
 
@@ -23,6 +23,7 @@ private:
     float mTimer;
     Type mType;
     const Vector2& mPosition;
+    int mRange;
 };
 
 

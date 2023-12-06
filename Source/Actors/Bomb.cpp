@@ -8,12 +8,14 @@
 #include "../Components/DrawComponents/DrawPolygonComponent.h"
 #include "../Components/ColliderComponents/AABBColliderComponent.h"
 #include "../Components/DrawComponents/DrawAnimatedComponent.h"
+#include "../Actors/Explosion.h"
 
 
-Bomb::Bomb(Game* game, const Vector2& position, Pacman* dono)
+Bomb::Bomb(Game* game, const Vector2& position, Pacman* dono, int range)
         :Actor(game)
         ,mOwner(dono)
         ,mPosition(position)
+        ,mRange(range)
         {
 
             SetPosition(position);
@@ -34,8 +36,27 @@ void Bomb::OnUpdate(float deltaTime)
         mTimer -= deltaTime;
         if (mTimer <= 0.0f){
             mOwner->reduceBomb();
-            //new Explosion(GetGame(), GetPosition());
+            new Explosion(GetGame(), GetPosition());
+            for(int i = 1; i <= mRange; i++) {
+                Vector2 top = GetPosition() + Vector2(0, i * 32);
+                new Explosion(GetGame(), top);
+            }
+            for(int i = 1; i<=mRange; i++) {
+                Vector2 left = GetPosition() + Vector2(i * (-32), 0);
+                new Explosion(GetGame(), left);
+            }
+            for(int i = 1; i<=mRange; i++) {
+                Vector2 right = GetPosition() + Vector2(i*(+32), 0);
+                new Explosion(GetGame(), right);
+            }
+            for(int i = 1; i<=mRange; i++) {
+                Vector2 down = GetPosition() + Vector2(0, i*(-32));
+                new Explosion(GetGame(), down);
+            }
+
             SetState(ActorState::Destroy);
 
         }
     }
+
+
