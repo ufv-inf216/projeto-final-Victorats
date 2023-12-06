@@ -6,6 +6,7 @@
 #include "../Actors/Item.h"
 #include "../Actors/Wall.h"
 #include "../Components/DrawComponents/DrawAnimatedComponent.h"
+#include "../Actors/Bomb.h"
 
 
 Pacman::Pacman(Game* game, int _id,
@@ -61,7 +62,7 @@ void Pacman::OnProcessInput(const uint8_t* state)
             mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, 0));
         }
         if(state[SDL_SCANCODE_SPACE]){
-            Die();
+            new Bomb(GetGame(), GetPosition());
         }
 
     }
