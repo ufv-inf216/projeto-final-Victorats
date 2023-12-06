@@ -17,3 +17,5 @@
 3691	7549	7235350138477333	CMakeFiles/p5-pacman.dir/Source/Components/DrawComponents/DrawAnimatedComponent.cpp.obj	22879302f4f7e7a6
 1337	2373	7235359794997930	p5-pacman.exe	9378ba3f3228232b
 7	1100	7235357144213265	CMakeFiles/p5-pacman.dir/Source/Actors/Bomb.cpp.obj	721a6ad837f8bc2d
+6	2027	7235824504745088	CMakeFiles/p5-pacman.dir/Source/Actors/Explosion.cpp.obj	3467c30bb660a273
+2028	3165	7235824516072046	p5-pacman.exe	64e227adf53b751d
