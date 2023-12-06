@@ -3,6 +3,7 @@
 //
 #pragma once
 #include "Actor.h"
+#include "Pacman.h"
 
 class Bomb : public Actor
 {
@@ -12,11 +13,12 @@ public:
     {
         Bombb,
     };
-    Bomb(Game* game, const Vector2& position);
+    Bomb(Game* game, const Vector2& position, Pacman* dono);
 
     void OnUpdate(float deltaTime);
 
 private:
+    Pacman* mOwner;
     class DrawAnimatedComponent* mDrawComponent;
     float mTimer;
     Type mType;

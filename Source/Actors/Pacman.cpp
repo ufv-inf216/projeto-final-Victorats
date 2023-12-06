@@ -17,6 +17,8 @@ Pacman::Pacman(Game* game, int _id,
         , mSpawnNode(nullptr)
 {   id = _id;
     mDyingTimer = 0.5;
+    mBombTimer = 0.0f;
+    mQtBombs = 0;
     mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Pacman/globinsprite2.png", "../Assets/Sprites/Pacman/goblin.json");
     mDrawComponent->AddAnimation("idle", {0});
     mDrawComponent->AddAnimation("dead", {0,1,2,3,4,5,6,7,8,9});
@@ -61,8 +63,8 @@ void Pacman::OnProcessInput(const uint8_t* state)
         } else {
             mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, 0));
         }
-        if(state[SDL_SCANCODE_SPACE]){
-            new Bomb(GetGame(), GetPosition());
+        if(state[SDL_SCANCODE_G]){
+            BombCreator(GetPosition());
         }
 
     }
@@ -84,7 +86,19 @@ void Pacman::OnProcessInput(const uint8_t* state)
         } else {
             mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, 0));
         }
+        if(state[SDL_SCANCODE_L]){
+            BombCreator(GetPosition());
+        }
 
+    }
+}
+
+void Pacman::BombCreator(const Vector2& position) {
+    if (mQtBombs < 2 && mBombTimer <= 0.0f) {
+        Bomb* mBomb = new Bomb(GetGame(), position,this);
+
+        mQtBombs++;
+        mBombTimer = 1.0f;
     }
 }
 
@@ -96,6 +110,11 @@ void Pacman::OnUpdate(float deltaTime)
 
     if(mIsDead)
         mDyingTimer -= deltaTime;
+
+    if (mBombTimer > 0.0f) {
+        mBombTimer -= deltaTime;
+    }
+
 
     // Detect and resolve collisions
     DetectCollision();

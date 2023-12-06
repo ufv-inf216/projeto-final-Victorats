@@ -28,16 +28,20 @@ public:
 
     void Die();
     bool IsDead() { return mIsDead; }
+    void reduceBomb(){mQtBombs--;}
 
 private:
     void UpdateAnimations();
 
-
+    void BombCreator(const Vector2& position);
     bool mIsDead;
     float mForwardSpeed;
     int id;
     class PathNode* mSpawnNode;
     class PathNode* mPrevNode;
+
+    int mQtBombs;
+    float mBombTimer;
 
     class RigidBodyComponent* mRigidBodyComponent;
     class DrawAnimatedComponent* mDrawComponent;
