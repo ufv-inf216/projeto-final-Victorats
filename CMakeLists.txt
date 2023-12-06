@@ -35,6 +35,8 @@ add_executable(${PROJECT_NAME}
         Source/Actors/Wall.cpp
         Source/Actors/Bomb.h
         Source/Actors/Bomb.cpp
+        Source/Actors/Explosion.h
+        Source/Actors/Explosion.cpp
 )
 
 ####### DO NOT EDIT BELLOW
