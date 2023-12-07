@@ -13,5 +13,5 @@ public:
 private:
     float mTimer;
     class DrawAnimatedComponent* mDrawComponent;
-    class AABBColliderComponent* mCollider;
+
 };

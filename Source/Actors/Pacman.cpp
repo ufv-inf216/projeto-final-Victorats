@@ -226,10 +226,10 @@ void Pacman::DetectCollision()
     for(auto *bomb : mGame->mBombs) {
         colliders.emplace_back(bomb->GetComponent<AABBColliderComponent>());
     }
-    /*for(auto *explosion : mGame->mExplosions) {
-
-       // colliders.emplace_back(explosion->GetComponent<AABBColliderComponent>());
-    }*/
+     for(auto *explosion : mGame->mExplosions) {
+         if(explosion != NULL)
+            colliders.emplace_back(explosion->GetComponent<AABBColliderComponent>());
+    }
 
 
 
@@ -258,12 +258,12 @@ void Pacman::OnCollision(std::vector<AABBColliderComponent::Overlap>& responses)
 
             }
 
-        /*if(collision.target->GetLayer() == ColliderLayer::Explosion)
+        if(collision.target->GetLayer() == ColliderLayer::Explosion)
         {
             // morre :(
             Die();
 
-        }*/
+        }
 
 
     }
