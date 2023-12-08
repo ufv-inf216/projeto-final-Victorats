@@ -261,17 +261,7 @@ void Pacman::OnCollision(std::vector<AABBColliderComponent::Overlap>& responses)
             }
 
             }
-
-
-        if(collision.target->GetLayer() == ColliderLayer::Box)
-        {
-            // quebra
-            for(auto x : mGame->Getbox()){
-                if(collision.target->GetOwner() == x){
-                    x->DestroyBox();
-                }
-            }
-        }
+        
 
 
     }

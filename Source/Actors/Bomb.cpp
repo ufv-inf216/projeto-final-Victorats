@@ -48,9 +48,10 @@ void Bomb::OnUpdate(float deltaTime)
             for(int i = 1; i <= mRange; i++) {
                 Vector2 top = GetPosition() + Vector2(0, i * 32);
                 bool naoC = false;
+                auto temp = new AABBColliderComponent(this, top.x, top.y, 16, 16, ColliderLayer::Node);
 
                 for(auto parede : mGame->GetWalls()) {
-                    if(parede->GetPosition().x == top.x && parede->GetPosition().y == top.y) {
+                    if(parede->GetComponent<AABBColliderComponent>()->Intersect(*temp)) {
                         naoC = true;
                     }
                 }
@@ -64,9 +65,10 @@ void Bomb::OnUpdate(float deltaTime)
             for(int i = 1; i<=mRange; i++) {
                 Vector2 left = GetPosition() + Vector2(i * (-32), 0);
                 bool naoC = false;
+                auto temp = new AABBColliderComponent(this, left.x, left.y, 16, 16, ColliderLayer::Node);
 
                 for(auto parede : mGame->GetWalls()) {
-                    if(parede->GetPosition().x == left.x && parede->GetPosition().y == left.y) {
+                    if(parede->GetComponent<AABBColliderComponent>()->Intersect(*temp)) {
                         naoC = true;
                     }
                 }
@@ -81,8 +83,10 @@ void Bomb::OnUpdate(float deltaTime)
                 Vector2 right = GetPosition() + Vector2(i*(+32), 0);
                 bool naoC = false;
 
+                auto temp = new AABBColliderComponent(this, right.x, right.y, 16, 16, ColliderLayer::Node);
+
                 for(auto parede : mGame->GetWalls()) {
-                    if(parede->GetPosition().x == right.x && parede->GetPosition().y == right.y) {
+                    if(parede->GetComponent<AABBColliderComponent>()->Intersect(*temp)) {
                       naoC = true;
                     }
                 }
@@ -96,9 +100,11 @@ void Bomb::OnUpdate(float deltaTime)
             for(int i = 1; i<=mRange; i++) {
                 Vector2 down = GetPosition() + Vector2(0, i*(-32));
                 bool naoC = false;
+                auto temp = new AABBColliderComponent(this, down.x, down.y, 16, 16, ColliderLayer::Node);
+
 
                 for(auto parede : mGame->GetWalls()) {
-                    if(parede->GetPosition().x == down.x && parede->GetPosition().y == down.y) {
+                    if(parede->GetComponent<AABBColliderComponent>()->Intersect(*temp)) {
                         naoC = true;
                     }
                 }
