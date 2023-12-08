@@ -2,15 +2,17 @@
 #include "../Game.h"
 #include "../Components/DrawComponents/DrawAnimatedComponent.h"
 #include "Box.h"
+#include "Pacman.h"
+
 
 Explosion::Explosion(Game* game, const Vector2& position)
         :Actor(game)
 
 {
+
     SetPosition(position);
     mDrawComponent = new DrawAnimatedComponent(this,"../Assets/Sprites/Explosion/exp.png","../Assets/Sprites/Explosion/exp.json");
     mDrawComponent->AddAnimation("explode", {0,1});
-
     mDrawComponent->SetAnimation("explode");
     mDrawComponent->SetAnimFPS(150.0f);
 
@@ -18,6 +20,13 @@ Explosion::Explosion(Game* game, const Vector2& position)
     mColliderComponent = new AABBColliderComponent(this, 0, 0, 32, 32, ColliderLayer::Explosion);
 
     mTimer = 1.5f;
+
+}
+
+Explosion::~Explosion()
+{
+
+
 }
 
 
@@ -25,13 +34,17 @@ Explosion::Explosion(Game* game, const Vector2& position)
 void Explosion::OnUpdate(float deltaTime)
 {
     mTimer -= deltaTime;
+
+    if(mTimer > 0.0f)
+        DetectCollisions();
+
     if (mTimer <= 0.0f){
-        mGame->RemoveExplosion(this);
+
         SetState(ActorState::Destroy);
 
     }
 
-    DetectCollisions();
+
 
 }
 
@@ -42,6 +55,9 @@ void Explosion::DetectCollisions() {
 
     for(auto *box : mGame->Getbox()) {
         colliders.emplace_back(box->GetComponent<AABBColliderComponent>());
+    }
+    for(auto *player : mGame->GetPlayer()) {
+        colliders.emplace_back(player->GetComponent<AABBColliderComponent>());
     }
 
     mColliderComponent->DetectCollision(mRigidBodyComponent, colliders);
@@ -64,9 +80,19 @@ void Explosion::OnCollision(std::vector<AABBColliderComponent::Overlap>& respons
                 }
             }
         }
+        if(collision.target->GetLayer() == ColliderLayer::Player)
+        {
+            // quebra
+            for(auto x : mGame->GetPlayer()){
+                if(collision.target->GetOwner() == x){
+                    x->Die();
+                }
+            }
+        }
 
 
     }
 }
+
 
 

@@ -269,7 +269,6 @@ void Game::UpdateState(float deltaTime)
         mDrawables.clear();
         mPendingActors.clear();
         mBoxes.clear();
-        mExplosions.clear();
         mBombs.clear();
         mActors.clear();
         mItems.clear();
@@ -403,14 +402,7 @@ void Game::RemoveBomb(Bomb* bomb) {
     mBombs.erase(iter);
 }
 
-void Game::AddExplosion(Explosion *exp) {
-    mExplosions.emplace_back(exp);
-}
-void Game::RemoveExplosion(Explosion *exp) {
-    auto iter = std::find(mExplosions.begin(), mExplosions.end(), exp);
 
-    mExplosions.erase(iter);
-}
 
 
 void Game::GenerateOutput()

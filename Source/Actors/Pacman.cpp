@@ -235,11 +235,6 @@ void Pacman::DetectCollision()
         colliders.emplace_back(bomb->GetComponent<AABBColliderComponent>());
     }
 
-     for(auto *explosion : mGame->mExplosions) {
-            if(explosion != nullptr)
-                colliders.emplace_back(explosion->GetComponent<AABBColliderComponent>());
-    }
-
 
 
     mColliderComponent->DetectCollision(mRigidBodyComponent, colliders);
@@ -267,12 +262,6 @@ void Pacman::OnCollision(std::vector<AABBColliderComponent::Overlap>& responses)
 
             }
 
-        if(collision.target->GetLayer() == ColliderLayer::Explosion)
-        {
-            // morre :(
-            Die();
-
-        }
 
         if(collision.target->GetLayer() == ColliderLayer::Box)
         {

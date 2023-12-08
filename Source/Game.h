@@ -69,9 +69,6 @@ public:
     void AddBomb(Bomb* bomb);
     void RemoveBomb(Bomb* bomb);
 
-    std::vector<class Explosion*> mExplosions;
-    void AddExplosion(Explosion* exp);
-    void RemoveExplosion(Explosion* exp);
 
 
 
@@ -144,6 +141,7 @@ private:
     std::vector<class Ghost*> mGhosts;
     std::vector<class PathNode*> mPathNodes;
     std::vector<class Box*> mBoxes;
+
 
 
     class PathNode* mTunnelLeft = nullptr;

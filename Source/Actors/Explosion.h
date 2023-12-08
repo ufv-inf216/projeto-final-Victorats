@@ -6,6 +6,7 @@ class Explosion : public Actor
 public:
 
     Explosion(Game* game, const Vector2& position);
+    ~Explosion();
 
     void OnUpdate(float deltaTime) override;
 

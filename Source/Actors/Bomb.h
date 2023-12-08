@@ -11,6 +11,7 @@ public:
 
 
     Bomb(Game* game, const Vector2& position, Pacman* dono, int range);
+    ~Bomb();
 
     void OnUpdate(float deltaTime);
 

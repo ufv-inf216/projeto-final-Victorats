@@ -31,6 +31,11 @@ Bomb::Bomb(Game* game, const Vector2& position, Pacman* dono, int range)
             mTimer = 3.0f;
         }
 
+Bomb::~Bomb(){
+
+            mGame->RemoveBomb(this);
+        }
+
 void Bomb::OnUpdate(float deltaTime)
     {
         mTimer -= deltaTime;
@@ -54,7 +59,7 @@ void Bomb::OnUpdate(float deltaTime)
                     break;
                 }
 
-                    mGame->AddExplosion(new Explosion(GetGame(), top));
+                    new Explosion(GetGame(), top);
             }
             for(int i = 1; i<=mRange; i++) {
                 Vector2 left = GetPosition() + Vector2(i * (-32), 0);
@@ -70,7 +75,7 @@ void Bomb::OnUpdate(float deltaTime)
                     break;
                 }
 
-                mGame->AddExplosion(new Explosion(GetGame(), left));
+                new Explosion(GetGame(), left);
             }
             for(int i = 1; i<=mRange; i++) {
                 Vector2 right = GetPosition() + Vector2(i*(+32), 0);
@@ -86,7 +91,7 @@ void Bomb::OnUpdate(float deltaTime)
                     break;
                 }
 
-                mGame->AddExplosion(new Explosion(GetGame(), right));
+                new Explosion(GetGame(), right);
             }
             for(int i = 1; i<=mRange; i++) {
                 Vector2 down = GetPosition() + Vector2(0, i*(-32));
@@ -101,12 +106,14 @@ void Bomb::OnUpdate(float deltaTime)
                 if(naoC) {
                     break;
                 }
-                    mGame->AddExplosion(new Explosion(GetGame(), down));
+                    new Explosion(GetGame(), down);
             }
-            mGame->RemoveBomb(this);
+
             SetState(ActorState::Destroy);
 
         }
     }
+
+
 
 
