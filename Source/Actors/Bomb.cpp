@@ -5,7 +5,7 @@
 #include "Bomb.h"
 #include "../Game.h"
 #include "../Components/DrawComponents/DrawSpriteComponent.h"
-
+#include "Wall.h"
 
 #include "../Components/DrawComponents/DrawAnimatedComponent.h"
 #include "../Actors/Explosion.h"
@@ -39,21 +39,69 @@ void Bomb::OnUpdate(float deltaTime)
 
             mOwner->reduceBomb();
             new Explosion(GetGame(), GetPosition());
+
             for(int i = 1; i <= mRange; i++) {
                 Vector2 top = GetPosition() + Vector2(0, i * 32);
-                mGame->AddExplosion(new Explosion(GetGame(), top));
+                bool naoC = false;
+
+                for(auto parede : mGame->GetWalls()) {
+                    if(parede->GetPosition().x == top.x && parede->GetPosition().y == top.y) {
+                        naoC = true;
+                    }
+                }
+
+                if(naoC) {
+                    break;
+                }
+
+                    mGame->AddExplosion(new Explosion(GetGame(), top));
             }
             for(int i = 1; i<=mRange; i++) {
                 Vector2 left = GetPosition() + Vector2(i * (-32), 0);
+                bool naoC = false;
+
+                for(auto parede : mGame->GetWalls()) {
+                    if(parede->GetPosition().x == left.x && parede->GetPosition().y == left.y) {
+                        naoC = true;
+                    }
+                }
+
+                if(naoC) {
+                    break;
+                }
+
                 mGame->AddExplosion(new Explosion(GetGame(), left));
             }
             for(int i = 1; i<=mRange; i++) {
                 Vector2 right = GetPosition() + Vector2(i*(+32), 0);
+                bool naoC = false;
+
+                for(auto parede : mGame->GetWalls()) {
+                    if(parede->GetPosition().x == right.x && parede->GetPosition().y == right.y) {
+                      naoC = true;
+                    }
+                }
+
+                if(naoC) {
+                    break;
+                }
+
                 mGame->AddExplosion(new Explosion(GetGame(), right));
             }
             for(int i = 1; i<=mRange; i++) {
                 Vector2 down = GetPosition() + Vector2(0, i*(-32));
-                mGame->AddExplosion(new Explosion(GetGame(), down));
+                bool naoC = false;
+
+                for(auto parede : mGame->GetWalls()) {
+                    if(parede->GetPosition().x == down.x && parede->GetPosition().y == down.y) {
+                        naoC = true;
+                    }
+                }
+
+                if(naoC) {
+                    break;
+                }
+                    mGame->AddExplosion(new Explosion(GetGame(), down));
             }
             mGame->RemoveBomb(this);
             SetState(ActorState::Destroy);

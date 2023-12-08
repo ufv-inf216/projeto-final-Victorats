@@ -83,6 +83,10 @@ public:
     void RemoveWall(class Wall* wall);
     std::vector<class Wall*>& GetWalls() { return mWalls; }
 
+    void AddFloor(class Floor* floor);
+    void RemoveFloor(class Floor* floor);
+    std::vector<class Floor*>& GetFloor() { return mFloors; }
+
     std::vector<class Box*>& Getbox() { return mBoxes; }
     void AddBox(class Box* box);
     void RemoveBox(class Box* box);
@@ -136,6 +140,7 @@ private:
     
     std::vector<class Item*> mItems;
     std::vector<class Wall*> mWalls;
+    std::vector<class Floor*> mFloors;
     std::vector<class Ghost*> mGhosts;
     std::vector<class PathNode*> mPathNodes;
     std::vector<class Box*> mBoxes;

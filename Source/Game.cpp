@@ -18,12 +18,11 @@
 #include "Actors/Item.h"
 #include "Actors/Bomb.h"
 #include "Actors/Explosion.h"
-
 #include "Actors/Wall.h"
 #include "Components/DrawComponents/DrawComponent.h"
 #include "Components/DrawComponents/DrawSpriteComponent.h"
 #include "Actors/Box.h"
-
+#include "Actors/Floor.h"
 
 
 Game::Game(int windowWidth, int windowHeight)
@@ -81,7 +80,7 @@ void Game::InitializeActors()
     background->SetPosition(Vector2(234.0f, 258.0f));
     //new DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 480, 480);
 
-    LoadLevel("../Assets/Levels/Level.txt",14,15);
+    LoadLevel("../Assets/Levels/Level.txt",15,15);
 
 
     SetGameState(State::Intro);
@@ -138,7 +137,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
                     wall->SetPosition(pos);
                 }
                 else if(aux[j] == '%'){
-                    auto* path = new Wall(this,std::string(1,aux[j]),ColliderLayer::Node,1);
+                    auto* path = new Floor(this,std::string(1,aux[j]),ColliderLayer::Node,1);
                     path->SetPosition(pos);
 
                 }
@@ -275,7 +274,7 @@ void Game::UpdateState(float deltaTime)
         mActors.clear();
         mItems.clear();
         mWalls.clear();
-        
+
 
 
         mGameState = State::Intro;
@@ -369,6 +368,17 @@ void Game::RemoveWall(Wall* item)
 {
     auto iter = std::find(mWalls.begin(), mWalls.end(), item);
     mWalls.erase(iter);
+}
+
+void Game::AddFloor(Floor* floor)
+{
+    mFloors.emplace_back(floor);
+}
+
+void Game::RemoveFloor(Floor* floor)
+{
+    auto iter = std::find(mFloors.begin(), mFloors.end(), floor);
+    mFloors.erase(iter);
 }
 
 void Game::AddBox(Box* box)
