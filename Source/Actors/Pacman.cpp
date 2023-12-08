@@ -8,6 +8,8 @@
 #include "../Components/DrawComponents/DrawAnimatedComponent.h"
 #include "../Actors/Bomb.h"
 #include "../Actors/Explosion.h"
+#include "../Actors/Box.h"
+
 
 
 Pacman::Pacman(Game* game, int _id,
@@ -90,6 +92,8 @@ void Pacman::OnProcessInput(const uint8_t* state)
         if(state[SDL_SCANCODE_L]){
             BombCreator(GetPosition());
         }
+        if(state[SDL_SCANCODE_SPACE])
+            Die();
 
     }
 }
@@ -223,12 +227,17 @@ void Pacman::DetectCollision()
         }
     }
 
+    for(auto *box : mGame->Getbox()) {
+        colliders.emplace_back(box->GetComponent<AABBColliderComponent>());
+    }
+
     for(auto *bomb : mGame->mBombs) {
         colliders.emplace_back(bomb->GetComponent<AABBColliderComponent>());
     }
+
      for(auto *explosion : mGame->mExplosions) {
-         if(explosion != NULL)
-            colliders.emplace_back(explosion->GetComponent<AABBColliderComponent>());
+            if(explosion != nullptr)
+                colliders.emplace_back(explosion->GetComponent<AABBColliderComponent>());
     }
 
 
@@ -263,6 +272,16 @@ void Pacman::OnCollision(std::vector<AABBColliderComponent::Overlap>& responses)
             // morre :(
             Die();
 
+        }
+
+        if(collision.target->GetLayer() == ColliderLayer::Box)
+        {
+            // quebra
+            for(auto x : mGame->Getbox()){
+                if(collision.target->GetOwner() == x){
+                    x->DestroyBox();
+                }
+            }
         }
 
 

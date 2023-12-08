@@ -8,7 +8,7 @@
 #include "../Components/DrawComponents/DrawPolygonComponent.h"
 #include "../Components/ColliderComponents/AABBColliderComponent.h"
 
-Wall::Wall(Game* game,const std::string &texturePath,ColliderLayer layer)
+Wall::Wall(Game* game,const std::string &texturePath,ColliderLayer layer, int drawOrder)
         :Actor(game)
 {
     new AABBColliderComponent(this, 0, 0, 32, 32, layer);
@@ -21,7 +21,7 @@ Wall::Wall(Game* game,const std::string &texturePath,ColliderLayer layer)
 //
 //    new DrawPolygonComponent(this, vertices);
     mGame->AddWall(this);
-    new DrawSpriteComponent (this, "../Assets/Sprites/Blocks/Block"+texturePath+".jpg",32,32,1);
+    new DrawSpriteComponent (this, "../Assets/Sprites/Blocks/Block"+texturePath+".jpg",32,32,drawOrder);
 
 }
 

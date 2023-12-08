@@ -9,9 +9,12 @@ public:
 
     void OnUpdate(float deltaTime) override;
 
+    void DetectCollisions();
+    void OnCollision(std::vector<AABBColliderComponent::Overlap>& responses) override;
 
 private:
     float mTimer;
     class DrawAnimatedComponent* mDrawComponent;
-
+    class AABBColliderComponent* mColliderComponent;
+    class RigidBodyComponent* mRigidBodyComponent;
 };

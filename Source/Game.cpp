@@ -22,6 +22,7 @@
 #include "Actors/Wall.h"
 #include "Components/DrawComponents/DrawComponent.h"
 #include "Components/DrawComponents/DrawSpriteComponent.h"
+#include "Actors/Box.h"
 
 
 
@@ -125,7 +126,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
             else if(aux[j] == '-'){
 
 
-                    auto* wall = new Wall(this,std::string(1,aux[j]),ColliderLayer::Wall);
+                    auto* wall = new Wall(this,std::string(1,aux[j]),ColliderLayer::Wall,1);
                     wall->SetPosition(pos);
                 }
 
@@ -133,21 +134,28 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
 
                     mPacman = new Pacman(this,1,125);
                     mPacman->SetPosition(pos);
-                    auto* wall = new Wall(this,"%",ColliderLayer::Node);
+                    auto* wall = new Wall(this,"%",ColliderLayer::Node,1);
                     wall->SetPosition(pos);
                 }
                 else if(aux[j] == '%'){
-                    auto* wall = new Wall(this,std::string(1,aux[j]),ColliderLayer::Node);
-                    wall->SetPosition(pos);
+                    auto* path = new Wall(this,std::string(1,aux[j]),ColliderLayer::Node,1);
+                    path->SetPosition(pos);
 
                 }
                 else if(aux[j] == 'A'){
                     mPlayer2 =  new Pacman(this,2,125);
                     mPlayer2->SetPosition(pos);
-                    auto* wall = new Wall(this,"%",ColliderLayer::Node);
+                    auto* wall = new Wall(this,"%",ColliderLayer::Node,1);
                     wall->SetPosition(pos);
 
                 }
+                else if(aux[j] == 'C'){
+                    auto* box = new Box(this,std::string(1,aux[j]),ColliderLayer::Box);
+                    auto* path = new Wall(this,"%",ColliderLayer::Node,1);
+                    path->SetPosition(pos);
+                    box->SetPosition(pos);
+                }
+
             }
         }
         levelP.close();
@@ -259,15 +267,15 @@ void Game::UpdateState(float deltaTime)
 
     if((mPacman->IsDead() && mPacman->mDyingTimer <= 0) || (mPlayer2->IsDead() && mPlayer2->mDyingTimer <=0))
     {
-
-        while (!mActors.empty())
-        {
-            delete mActors.back();
-        }
-
-
+        mDrawables.clear();
+        mPendingActors.clear();
+        mBoxes.clear();
+        mExplosions.clear();
+        mBombs.clear();
+        mActors.clear();
         mItems.clear();
         mWalls.clear();
+        
 
 
         mGameState = State::Intro;
@@ -361,6 +369,18 @@ void Game::RemoveWall(Wall* item)
 {
     auto iter = std::find(mWalls.begin(), mWalls.end(), item);
     mWalls.erase(iter);
+}
+
+void Game::AddBox(Box* box)
+{
+    mBoxes.emplace_back(box);
+}
+
+
+void Game::RemoveBox(Box* box)
+{
+    auto iter = std::find(mBoxes.begin(), mBoxes.end(), box);
+    mBoxes.erase(iter);
 }
 
 void Game::AddBomb(Bomb* bomb) {

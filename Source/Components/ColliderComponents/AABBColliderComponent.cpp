@@ -114,6 +114,10 @@ void AABBColliderComponent::DetectCollision(RigidBodyComponent *rigidBody, std::
             else if(target->GetLayer() == ColliderLayer::Bomb){
                 ResolveCollisions(rigidBody, minOverlap);
             }
+            else if(target->GetLayer() == ColliderLayer::Box){
+                ResolveCollisions(rigidBody, minOverlap);
+            }
+
 
             responses.emplace_back(minOverlap);
         }

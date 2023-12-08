@@ -83,7 +83,9 @@ public:
     void RemoveWall(class Wall* wall);
     std::vector<class Wall*>& GetWalls() { return mWalls; }
 
-
+    std::vector<class Box*>& Getbox() { return mBoxes; }
+    void AddBox(class Box* box);
+    void RemoveBox(class Box* box);
 
 
 
@@ -136,6 +138,8 @@ private:
     std::vector<class Wall*> mWalls;
     std::vector<class Ghost*> mGhosts;
     std::vector<class PathNode*> mPathNodes;
+    std::vector<class Box*> mBoxes;
+
 
     class PathNode* mTunnelLeft = nullptr;
     class PathNode* mTunnelRight = nullptr;

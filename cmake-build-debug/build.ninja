@@ -175,6 +175,13 @@ build CMakeFiles/p5-pacman.dir/Source/Actors/Explosion.cpp.obj: CXX_COMPILER__p5
   OBJECT_DIR = CMakeFiles\p5-pacman.dir
   OBJECT_FILE_DIR = CMakeFiles\p5-pacman.dir\Source\Actors
 
+build CMakeFiles/p5-pacman.dir/Source/Actors/Box.cpp.obj: CXX_COMPILER__p5-pacman_unscanned_Debug C$:/Users/victo/Documents/GitHub/projeto-final-Victorats/Source/Actors/Box.cpp || cmake_object_order_depends_target_p5-pacman
+  DEP_FILE = CMakeFiles\p5-pacman.dir\Source\Actors\Box.cpp.obj.d
+  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  INCLUDES = -isystem "C:/Program Files/SDL2/cmake/../include" -isystem "C:/Program Files/SDL2_image-2.6.3/cmake/../include"
+  OBJECT_DIR = CMakeFiles\p5-pacman.dir
+  OBJECT_FILE_DIR = CMakeFiles\p5-pacman.dir\Source\Actors
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target p5-pacman
@@ -183,7 +190,7 @@ build CMakeFiles/p5-pacman.dir/Source/Actors/Explosion.cpp.obj: CXX_COMPILER__p5
 #############################################
 # Link the executable p5-pacman.exe
 
-build p5-pacman.exe: CXX_EXECUTABLE_LINKER__p5-pacman_Debug CMakeFiles/p5-pacman.dir/Source/Main.cpp.obj CMakeFiles/p5-pacman.dir/Source/Math.cpp.obj CMakeFiles/p5-pacman.dir/Source/Random.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Actor.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/Component.cpp.obj CMakeFiles/p5-pacman.dir/Source/Game.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/DrawComponents/DrawComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/RigidBodyComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/ColliderComponents/CircleColliderComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/DrawComponents/DrawSpriteComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/DrawComponents/DrawPolygonComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Pacman.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/ColliderComponents/AABBColliderComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/DrawComponents/DrawAnimatedComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Item.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Wall.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Bomb.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Explosion.cpp.obj | C$:/Program$ Files/SDL2/cmake/../lib/x64/SDL2main.lib C$:/Program$ Files/SDL2/cmake/../lib/x64/SDL2.lib C$:/Program$ Files/SDL2_image-2.6.3/cmake/../lib/x64/SDL2_image.lib
+build p5-pacman.exe: CXX_EXECUTABLE_LINKER__p5-pacman_Debug CMakeFiles/p5-pacman.dir/Source/Main.cpp.obj CMakeFiles/p5-pacman.dir/Source/Math.cpp.obj CMakeFiles/p5-pacman.dir/Source/Random.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Actor.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/Component.cpp.obj CMakeFiles/p5-pacman.dir/Source/Game.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/DrawComponents/DrawComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/RigidBodyComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/ColliderComponents/CircleColliderComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/DrawComponents/DrawSpriteComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/DrawComponents/DrawPolygonComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Pacman.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/ColliderComponents/AABBColliderComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Components/DrawComponents/DrawAnimatedComponent.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Item.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Wall.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Bomb.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Explosion.cpp.obj CMakeFiles/p5-pacman.dir/Source/Actors/Box.cpp.obj | C$:/Program$ Files/SDL2/cmake/../lib/x64/SDL2main.lib C$:/Program$ Files/SDL2/cmake/../lib/x64/SDL2.lib C$:/Program$ Files/SDL2_image-2.6.3/cmake/../lib/x64/SDL2_image.lib
   FLAGS = -g
   LINK_LIBRARIES = "C:/Program Files/SDL2/cmake/../lib/x64/SDL2main.lib"  "C:/Program Files/SDL2/cmake/../lib/x64/SDL2.lib"  "C:/Program Files/SDL2_image-2.6.3/cmake/../lib/x64/SDL2_image.lib"  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\p5-pacman.dir

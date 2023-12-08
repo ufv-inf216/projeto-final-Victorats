@@ -35,6 +35,8 @@ void Bomb::OnUpdate(float deltaTime)
     {
         mTimer -= deltaTime;
         if (mTimer <= 0.0f){
+
+
             mOwner->reduceBomb();
             new Explosion(GetGame(), GetPosition());
             for(int i = 1; i <= mRange; i++) {

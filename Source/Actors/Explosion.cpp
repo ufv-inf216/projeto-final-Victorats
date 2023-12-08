@@ -1,7 +1,7 @@
 #include "Explosion.h"
 #include "../Game.h"
 #include "../Components/DrawComponents/DrawAnimatedComponent.h"
-#
+#include "Box.h"
 
 Explosion::Explosion(Game* game, const Vector2& position)
         :Actor(game)
@@ -14,9 +14,10 @@ Explosion::Explosion(Game* game, const Vector2& position)
     mDrawComponent->SetAnimation("explode");
     mDrawComponent->SetAnimFPS(150.0f);
 
-    new AABBColliderComponent(this, 0, 0, 32, 32, ColliderLayer::Explosion);
+    mRigidBodyComponent = new RigidBodyComponent(this);
+    mColliderComponent = new AABBColliderComponent(this, 0, 0, 32, 32, ColliderLayer::Explosion);
 
-    mTimer = 3.0f;
+    mTimer = 1.5f;
 }
 
 
@@ -27,5 +28,45 @@ void Explosion::OnUpdate(float deltaTime)
     if (mTimer <= 0.0f){
         mGame->RemoveExplosion(this);
         SetState(ActorState::Destroy);
+
+    }
+
+    DetectCollisions();
+
+}
+
+void Explosion::DetectCollisions() {
+
+    // Check collision against walls, items and ghosts
+    std::vector<AABBColliderComponent *> colliders;
+
+    for(auto *box : mGame->Getbox()) {
+        colliders.emplace_back(box->GetComponent<AABBColliderComponent>());
+    }
+
+    mColliderComponent->DetectCollision(mRigidBodyComponent, colliders);
+
+
+}
+
+void Explosion::OnCollision(std::vector<AABBColliderComponent::Overlap>& responses)
+{
+    for(auto collision : responses)
+    {
+
+
+        if(collision.target->GetLayer() == ColliderLayer::Box)
+        {
+            // quebra
+            for(auto x : mGame->Getbox()){
+                if(collision.target->GetOwner() == x){
+                    x->DestroyBox();
+                }
+            }
+        }
+
+
     }
 }
+
+
