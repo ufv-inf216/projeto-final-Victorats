@@ -8,7 +8,7 @@ BomberDepartment é um Bomberman tematizado, o objetivo do jogo é o jogador des
 Na versão atual do jogo, ainda não alteramos as sprites pois as que estão atualmente foram utilizadas no inicio do projeto. 
 
 Mecanicas Basicas:
-O jogo já pode ser jogado de dois jogadores. O jogador 1 se movimenta com as teclas (W,S,A,D) e planta a bomba no G o jogador 2 se movimenta nas setas e planta a bomba no L. A mecanica da bomba explodir está quase totalmente funcional, só está com um pequeno problema de colisão na hora de ser construída. A mecânica da bomba matar os jogadores e querbar as caixas também já está funcional. Das mecânicas básicas o que está faltando mesmo é as caixas explodirem.
+O jogo já pode ser jogado de dois jogadores. O jogador 1 se movimenta com as teclas (W,S,A,D) e planta a bomba no G o jogador 2 se movimenta nas setas e planta a bomba no L. A mecanica da explosão está quase totalmente funcional, só está com um pequeno problema de colisão na hora de ser construída, o que faz com que o resultado não seja igual o esperado. A mecânica da explosão matar os jogadores e querbar as caixas também já está funcional. Das mecânicas básicas o que está faltando mesmo é as caixas explodirem. A colisão entre os jogadores já está implementada, a colisão dos jogadores com a bomba também.
 
 Condições de vitória e de derrota:
 
