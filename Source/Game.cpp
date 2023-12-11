@@ -23,6 +23,7 @@
 #include "Components/DrawComponents/DrawSpriteComponent.h"
 #include "Actors/Box.h"
 #include "Actors/Floor.h"
+#include "AudioSystem.h"
 
 
 Game::Game(int windowWidth, int windowHeight)
@@ -69,7 +70,6 @@ bool Game::Initialize()
 
     // Init all game actors
     InitializeActors();
-
     return true;
 }
 
@@ -81,7 +81,8 @@ void Game::InitializeActors()
     //new DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 480, 480);
 
     LoadLevel("../Assets/Levels/Level.txt",15,15);
-
+    mAudio = new AudioSystem();
+    mAudio->PlaySound("ChompLoop.wav",true);
 
     SetGameState(State::Intro);
 }

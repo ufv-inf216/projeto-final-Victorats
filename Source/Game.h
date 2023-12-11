@@ -106,7 +106,7 @@ private:
     void LoadLevel(const std::string& texturePath, const int width, const int height);
     void LoadPaths(const std::string& fileName);
 
-
+    class AudioSystem* mAudio;
     // All the actors in the game
     std::vector<class Actor*> mActors;
     std::vector<class Actor*> mPendingActors;

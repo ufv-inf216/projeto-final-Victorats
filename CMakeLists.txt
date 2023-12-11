@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.26)
 # Configurando o padrão c++
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 # Configurando o nome e executável do projeto
 set(PROJECT_NAME "p5-pacman")
@@ -41,11 +41,14 @@ add_executable(${PROJECT_NAME}
         Source/Actors/Box.cpp
         Source/Actors/Floor.h
         Source/Actors/Floor.cpp
+        Source/AudioSystem.cpp
+        Source/AudioSystem.h
 )
 
 ####### DO NOT EDIT BELLOW
 find_package(SDL2 2.28.2 EXACT REQUIRED)
 find_package(SDL2_image REQUIRED)
+find_package(SDL2_mixer REQUIRED)
 
 include_directories(${SDL2_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} SDL2_image::SDL2_image)
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} SDL2_image::SDL2_image SDL2_mixer::SDL2_mixer)
