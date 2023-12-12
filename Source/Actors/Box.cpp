@@ -11,7 +11,7 @@
 Box::Box(Game* game,const std::string &texturePath,ColliderLayer layer)
         :Actor(game)
 {
-    new AABBColliderComponent(this, 0, 0, 26, 26, layer);
+    new AABBColliderComponent(this, 0, 0, 32, 32, layer);
 
 //    auto v1 = mColliderComponent->GetMin();
 //    auto v4 = mColliderComponent->GetMax();

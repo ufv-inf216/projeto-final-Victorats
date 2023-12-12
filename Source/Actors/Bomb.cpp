@@ -15,21 +15,32 @@ Bomb::Bomb(Game* game, const Vector2& position, Pacman* dono, int range)
         :Actor(game)
         ,mOwner(dono)
         ,mPosition(position)
-        ,mRange(range)
-        {
-
-            SetPosition(position);
-            mDrawComponent = new DrawAnimatedComponent(this,"../Assets/Sprites/Bomb/bombsprite.png","../Assets/Sprites/Bomb/bombsprite.json");
-            mDrawComponent->AddAnimation("tictac", {0,1,2,3,4,5});
-
-            mDrawComponent->SetAnimation("tictac");
-            mDrawComponent->SetAnimFPS(10.0f);
-
-            new AABBColliderComponent(this, 0, 0, 32, 32, ColliderLayer::Bomb);
-
-
-            mTimer = 3.0f;
+        ,mRange(range) {
+    Vector2 posicao;
+    int distancia = 987654321;
+    for (int i = 0; i < mGame->mBombPositions.size(); i++) {
+        int temp = abs(mGame->mBombPositions[i].x - position.x) + abs(mGame->mBombPositions[i].y - position.y);
+        if (temp < distancia) {
+            distancia = temp;
+            posicao.x = mGame->mBombPositions[i].x;
+            posicao.y = mGame->mBombPositions[i].y;
         }
+
+        SetPosition(posicao);
+
+        mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Bomb/bombsprite.png",
+                                                   "../Assets/Sprites/Bomb/bombsprite.json");
+        mDrawComponent->AddAnimation("tictac", {0, 1, 2, 3, 4, 5});
+
+        mDrawComponent->SetAnimation("tictac");
+        mDrawComponent->SetAnimFPS(10.0f);
+
+        new AABBColliderComponent(this, 0, 0, 32, 32, ColliderLayer::Bomb);
+
+
+        mTimer = 3.0f;
+    }
+}
 
 Bomb::~Bomb(){
 
@@ -48,10 +59,10 @@ void Bomb::OnUpdate(float deltaTime)
             for(int i = 1; i <= mRange; i++) {
                 Vector2 top = GetPosition() + Vector2(0, i * 32);
                 bool naoC = false;
-                auto temp = new AABBColliderComponent(this, top.x, top.y, 16, 16, ColliderLayer::Node);
+
 
                 for(auto parede : mGame->GetWalls()) {
-                    if(parede->GetComponent<AABBColliderComponent>()->Intersect(*temp)) {
+                    if(parede->GetPosition().x == top.x && parede->GetPosition().y == top.y) {
                         naoC = true;
                     }
                 }
@@ -65,10 +76,10 @@ void Bomb::OnUpdate(float deltaTime)
             for(int i = 1; i<=mRange; i++) {
                 Vector2 left = GetPosition() + Vector2(i * (-32), 0);
                 bool naoC = false;
-                auto temp = new AABBColliderComponent(this, left.x, left.y, 16, 16, ColliderLayer::Node);
+
 
                 for(auto parede : mGame->GetWalls()) {
-                    if(parede->GetComponent<AABBColliderComponent>()->Intersect(*temp)) {
+                    if(parede->GetPosition().x == left.x && parede->GetPosition().y == left.y) {
                         naoC = true;
                     }
                 }
@@ -83,10 +94,8 @@ void Bomb::OnUpdate(float deltaTime)
                 Vector2 right = GetPosition() + Vector2(i*(+32), 0);
                 bool naoC = false;
 
-                auto temp = new AABBColliderComponent(this, right.x, right.y, 16, 16, ColliderLayer::Node);
-
                 for(auto parede : mGame->GetWalls()) {
-                    if(parede->GetComponent<AABBColliderComponent>()->Intersect(*temp)) {
+                    if(parede->GetPosition().x == right.x && parede->GetPosition().y == right.y) {
                       naoC = true;
                     }
                 }
@@ -100,11 +109,9 @@ void Bomb::OnUpdate(float deltaTime)
             for(int i = 1; i<=mRange; i++) {
                 Vector2 down = GetPosition() + Vector2(0, i*(-32));
                 bool naoC = false;
-                auto temp = new AABBColliderComponent(this, down.x, down.y, 16, 16, ColliderLayer::Node);
-
 
                 for(auto parede : mGame->GetWalls()) {
-                    if(parede->GetComponent<AABBColliderComponent>()->Intersect(*temp)) {
+                    if(parede->GetPosition().x == down.x && parede->GetPosition().y == down.y) {
                         naoC = true;
                     }
                 }

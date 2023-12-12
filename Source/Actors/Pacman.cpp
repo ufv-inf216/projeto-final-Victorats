@@ -22,7 +22,7 @@ Pacman::Pacman(Game* game, int _id,
     mDyingTimer = 0.5;
     mBombTimer = 0.0f;
     mQtBombs = 0;
-    mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Pacman/globinsprite2.png", "../Assets/Sprites/Pacman/goblin.json");
+    mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Pacman/globinsprite2.png", "../Assets/Sprites/Pacman/goblin.json", 5);
     mDrawComponent->AddAnimation("idle", {0});
     mDrawComponent->AddAnimation("dead", {0,1,2,3,4,5,6,7,8,9});
     mDrawComponent->AddAnimation("right", {4,5,6,7});

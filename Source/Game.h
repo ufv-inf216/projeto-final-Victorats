@@ -52,6 +52,8 @@ public:
     int GetWindowWidth() const { return mWindowWidth; }
     int GetWindowHeight() const { return mWindowHeight; }
 
+    std::vector<class Vector2> mBombPositions;
+
     SDL_Texture* LoadTexture(const std::string& texturePath);
 
     // Game-specific

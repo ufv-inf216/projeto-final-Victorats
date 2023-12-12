@@ -43,6 +43,8 @@ add_executable(${PROJECT_NAME}
         Source/Actors/Floor.cpp
         Source/AudioSystem.cpp
         Source/AudioSystem.h
+        Source/AudioSystem.cpp
+        Source/AudioSystem.cpp
 )
 
 ####### DO NOT EDIT BELLOW

@@ -82,7 +82,7 @@ void Game::InitializeActors()
 
     LoadLevel("../Assets/Levels/Level.txt",15,15);
     mAudio = new AudioSystem();
-    mAudio->PlaySound("ChompLoop.wav",true);
+    mAudio->PlaySound("MusicLoop.ogg",true);
 
     SetGameState(State::Intro);
 }
@@ -128,6 +128,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
 
                     auto* wall = new Wall(this,std::string(1,aux[j]),ColliderLayer::Wall,1);
                     wall->SetPosition(pos);
+
                 }
 
                 else if(aux[j] == 'M'){
@@ -136,10 +137,12 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
                     mPacman->SetPosition(pos);
                     auto* wall = new Wall(this,"%",ColliderLayer::Node,1);
                     wall->SetPosition(pos);
+                    mBombPositions.emplace_back(pos);
                 }
                 else if(aux[j] == '%'){
                     auto* path = new Floor(this,std::string(1,aux[j]),ColliderLayer::Node,1);
                     path->SetPosition(pos);
+                    mBombPositions.emplace_back(pos);
 
                 }
                 else if(aux[j] == 'A'){
@@ -147,6 +150,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
                     mPlayer2->SetPosition(pos);
                     auto* wall = new Wall(this,"%",ColliderLayer::Node,1);
                     wall->SetPosition(pos);
+                    mBombPositions.emplace_back(pos);
 
                 }
                 else if(aux[j] == 'C'){
@@ -154,6 +158,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
                     auto* path = new Wall(this,"%",ColliderLayer::Node,1);
                     path->SetPosition(pos);
                     box->SetPosition(pos);
+                    mBombPositions.emplace_back(pos);
                 }
 
             }

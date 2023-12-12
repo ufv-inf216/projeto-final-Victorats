@@ -11,7 +11,7 @@ Explosion::Explosion(Game* game, const Vector2& position)
 {
 
     SetPosition(position);
-    mDrawComponent = new DrawAnimatedComponent(this,"../Assets/Sprites/Explosion/exp.png","../Assets/Sprites/Explosion/exp.json");
+    mDrawComponent = new DrawAnimatedComponent(this,"../Assets/Sprites/Explosion/exp.png","../Assets/Sprites/Explosion/exp.json",99);
     mDrawComponent->AddAnimation("explode", {0,1});
     mDrawComponent->SetAnimation("explode");
     mDrawComponent->SetAnimFPS(150.0f);
