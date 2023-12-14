@@ -77,8 +77,8 @@ void Game::InitializeActors()
 {
     // Background
     auto* background = new Actor(this);
-    background->SetPosition(Vector2(234.0f, 258.0f));
-    //new DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 480, 480);
+    background->SetPosition(Vector2(256.0f, 256.0f));
+    //DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 512, 512);
 
     LoadLevel("../Assets/Levels/Level.txt",15,15);
     mAudio = new AudioSystem();
@@ -97,8 +97,8 @@ void Game::SetGameState(State gameState)
 
 void Game::LoadLevel(const std::string& levelPath,const int width, const int height)
 {
-    const float STARTX = 16.0f;
-    const float STARTY = 16.0f;
+    const float STARTX = 32.0f;
+    const float STARTY = 32.0f;
     const float SPACING = 32.0f;
 
     std::ifstream  levelP;
@@ -109,10 +109,10 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
         return;
     }
     std::string aux;
-    for (int i = 0; i <= height; ++i) {
+    for (int i = 0; i < height; ++i) {
         std::getline(levelP,aux);
 
-        for (int j = 0; j <= width; ++j) {
+        for (int j = 0; j < width; ++j) {
             Vector2 pos;
             pos.x = STARTX + SPACING * j;
             pos.y = STARTY + SPACING * i;

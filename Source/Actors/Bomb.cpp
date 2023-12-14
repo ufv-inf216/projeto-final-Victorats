@@ -71,7 +71,7 @@ void Bomb::OnUpdate(float deltaTime)
                     break;
                 }
 
-                    new Explosion(GetGame(), top);
+                new Explosion(GetGame(), top);
             }
             for(int i = 1; i<=mRange; i++) {
                 Vector2 left = GetPosition() + Vector2(i * (-32), 0);

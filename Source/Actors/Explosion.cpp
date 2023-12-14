@@ -56,7 +56,8 @@ void Explosion::DetectCollisions() {
     std::vector<AABBColliderComponent *> colliders;
 
     for(auto *box : mGame->Getbox()) {
-        colliders.emplace_back(box->GetComponent<AABBColliderComponent>());
+        if(box->GetComponent<AABBColliderComponent>()->Intersect(*this->GetComponent<AABBColliderComponent>()))
+            colliders.emplace_back(box->GetComponent<AABBColliderComponent>());
     }
     for(auto *player : mGame->GetPlayer()) {
         colliders.emplace_back(player->GetComponent<AABBColliderComponent>());
