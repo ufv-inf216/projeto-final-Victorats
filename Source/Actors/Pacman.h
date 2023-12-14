@@ -20,6 +20,7 @@ public:
     void SetSpawnNode(class PathNode* node) { mSpawnNode = node; }
     float mDyingTimer;
 
+    int mRange;
 
     class PathNode* GetPrevNode() const;
     Vector2 GetPointInFrontOf(float dist) const;
@@ -40,8 +41,10 @@ private:
     class PathNode* mSpawnNode;
     class PathNode* mPrevNode;
 
+
     int mQtBombs;
     float mBombTimer;
+    int mBombLim;
 
     class RigidBodyComponent* mRigidBodyComponent;
     class DrawAnimatedComponent* mDrawComponent;

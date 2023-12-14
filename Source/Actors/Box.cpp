@@ -7,6 +7,8 @@
 #include "../Components/DrawComponents/DrawSpriteComponent.h"
 #include "../Components/DrawComponents/DrawPolygonComponent.h"
 #include "../Components/ColliderComponents/AABBColliderComponent.h"
+#include "Item.h"
+#include <random>
 
 Box::Box(Game* game,const std::string &texturePath,ColliderLayer layer)
         :Actor(game)
@@ -34,6 +36,16 @@ void Box::DestroyBox()
 {
 
     SetState(ActorState::Destroy);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, 9);
+    int randomNumber = dis(gen);
+
+        if(randomNumber == 2 || randomNumber == 1)
+            new Item(mGame,Item::Type::addRange,GetPosition());
+        else if(randomNumber == 3 || randomNumber == 4)
+            new Item(mGame,Item::Type::addBomb,GetPosition());
 
 
 }

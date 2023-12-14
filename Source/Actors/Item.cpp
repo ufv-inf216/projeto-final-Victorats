@@ -5,27 +5,34 @@
 #include "Item.h"
 #include "../Game.h"
 #include "../Components/DrawComponents/DrawSpriteComponent.h"
+#include "../Components/DrawComponents/DrawAnimatedComponent.h"
 #include "../Components/ColliderComponents/AABBColliderComponent.h"
 
-Item::Item(Game* game, Type type, int width, int height)
+Item::Item(Game* game, Type type, Vector2 position)
         :Actor(game)
-        ,mWidth(width)
-        ,mHeight(height)
         ,mType(type)
+        ,position(position)
 {
     std::string texturePath = "../Assets/Sprites/Items/";
-    switch (mType)
+    std::string jsonPath = "../Assets/Sprites/Items/";
+    SetPosition(position);
+    int random = rand() % 2;
+    switch (random)
     {
-        case PowerPellet:
-            texturePath += "PowerPellet.png";
+        case 1:
+            texturePath += "maisRange.jpg";
+            new DrawSpriteComponent (this, texturePath,32,32,25);
             break;
-        case Pellet:
-        default:
-            texturePath += "Pellet.png";
+
+        case 2:
+            texturePath += "maisQt.jpg";
+            new DrawSpriteComponent (this, texturePath,32,32,25);
             break;
+
     }
 
-    new DrawSpriteComponent(this, texturePath, mWidth, mHeight);
+
+
     new AABBColliderComponent(this, 0, 0, mWidth, mHeight, ColliderLayer::Item);
 
     mGame->AddItem(this);

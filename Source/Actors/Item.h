@@ -6,16 +6,17 @@
 
 #include "Actor.h"
 
+
 class Item : public Actor
 {
 public:
     enum Type
     {
-        Pellet,
-        PowerPellet,
+        addRange,
+        addBomb,
     };
 
-    Item(Game* game, Type type, int width, int height);
+    Item(Game* game, Type type, Vector2);
     ~Item();
 
     // Get the type of ghost this is
@@ -23,7 +24,8 @@ public:
 
 private:
     Type mType;
-
     int mWidth;
+    Vector2 position;
+    class DrawAnimatedComponent* mDrawComponent;
     int mHeight;
 };

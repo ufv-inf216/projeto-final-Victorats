@@ -3,6 +3,7 @@
 #include "../Components/DrawComponents/DrawAnimatedComponent.h"
 #include "Box.h"
 #include "Pacman.h"
+#include "../AudioSystem.h"
 
 
 Explosion::Explosion(Game* game, const Vector2& position)
@@ -15,6 +16,7 @@ Explosion::Explosion(Game* game, const Vector2& position)
     mDrawComponent->AddAnimation("explode", {0,1});
     mDrawComponent->SetAnimation("explode");
     mDrawComponent->SetAnimFPS(150.0f);
+    mAudio = new AudioSystem();
 
     mRigidBodyComponent = new RigidBodyComponent(this);
     mColliderComponent = new AABBColliderComponent(this, 0, 0, 32, 32, ColliderLayer::Explosion);
@@ -86,6 +88,8 @@ void Explosion::OnCollision(std::vector<AABBColliderComponent::Overlap>& respons
             for(auto x : mGame->GetPlayer()){
                 if(collision.target->GetOwner() == x){
                     x->Die();
+                    mAudio->PlaySound("WinMusic.wav");
+
                 }
             }
         }

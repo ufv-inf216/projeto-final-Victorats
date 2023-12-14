@@ -117,13 +117,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
             pos.x = STARTX + SPACING * j;
             pos.y = STARTY + SPACING * i;
 
-
-            if(aux[j] == 'p'){
-                Item* p = new Item(this, Item::Type::Pellet, 4, 4);
-
-                p->SetPosition(pos);
-            }
-            else if(aux[j] == '-'){
+                if(aux[j] == '-'){
 
 
                     auto* wall = new Wall(this,std::string(1,aux[j]),ColliderLayer::Wall,1);
@@ -167,7 +161,15 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
 }
 
 
+void Game::UnloadActors()
+{
+    while (!mActors.empty())
+    {
+        delete mActors.back();
+    }
 
+
+}
 
 
 void Game::RunLoop()
@@ -272,15 +274,7 @@ void Game::UpdateState(float deltaTime)
 
     if((mPacman->IsDead() && mPacman->mDyingTimer <= 0) || (mPlayer2->IsDead() && mPlayer2->mDyingTimer <=0))
     {
-        mDrawables.clear();
-        mPendingActors.clear();
-        mBoxes.clear();
-        mBombs.clear();
-        mActors.clear();
-        mItems.clear();
-        mWalls.clear();
-
-
+        UnloadActors();
 
         mGameState = State::Intro;
         mRespawnTimer = RESPAWN_TIME;
@@ -290,11 +284,6 @@ void Game::UpdateState(float deltaTime)
 
     // Count number of pellets in game
     int pellets_count = 0;
-    for(auto *item : mItems) {
-        if(item->GetType() == Item::Type::Pellet) {
-            pellets_count += 1;
-        }
-    }
 
     // If there are no more pellets, player won
     // For now, just pause the game

@@ -15,6 +15,7 @@ public:
 
 private:
     float mTimer;
+    class AudioSystem* mAudio;
     class DrawAnimatedComponent* mDrawComponent;
     class AABBColliderComponent* mColliderComponent;
     class RigidBodyComponent* mRigidBodyComponent;

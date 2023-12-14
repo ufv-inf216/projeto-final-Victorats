@@ -144,11 +144,12 @@ private:
     std::vector<class PathNode*> mPathNodes;
     std::vector<class Box*> mBoxes;
 
-
+    void UnloadActors();
 
     class PathNode* mTunnelLeft = nullptr;
     class PathNode* mTunnelRight = nullptr;
     class PathNode* mGhostPen = nullptr;
+
 
 
 

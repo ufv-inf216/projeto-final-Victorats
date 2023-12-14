@@ -9,6 +9,7 @@
 #include "../Actors/Bomb.h"
 #include "../Actors/Explosion.h"
 #include "../Actors/Box.h"
+#include "../AudioSystem.h"
 
 
 
@@ -19,9 +20,11 @@ Pacman::Pacman(Game* game, int _id,
         ,mIsDead(false)
         , mSpawnNode(nullptr)
 {   id = _id;
-    mDyingTimer = 0.5;
+    mDyingTimer = 5.0f;
     mBombTimer = 0.0f;
     mQtBombs = 0;
+    mRange = 2;
+    mBombLim = 2;
     mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Pacman/globinsprite2.png", "../Assets/Sprites/Pacman/goblin.json", 5);
     mDrawComponent->AddAnimation("idle", {0});
     mDrawComponent->AddAnimation("dead", {0,1,2,3,4,5,6,7,8,9});
@@ -92,15 +95,14 @@ void Pacman::OnProcessInput(const uint8_t* state)
         if(state[SDL_SCANCODE_L]){
             BombCreator(GetPosition());
         }
-        if(state[SDL_SCANCODE_SPACE])
-            Die();
+
 
     }
 }
 
 void Pacman::BombCreator(const Vector2& position) {
-    if (mQtBombs < 2 && mBombTimer <= 0.0f) {
-        Bomb* mBomb = new Bomb(GetGame(), position,this,2);
+    if (mQtBombs < mBombLim && mBombTimer <= 0.0f) {
+        Bomb* mBomb = new Bomb(GetGame(), position,this,mRange);
         mGame->AddBomb(mBomb);
         mQtBombs++;
         mBombTimer = 1.0f;
@@ -248,16 +250,17 @@ void Pacman::OnCollision(std::vector<AABBColliderComponent::Overlap>& responses)
         {
             auto *item = dynamic_cast<Item *>(collision.target->GetOwner());
 
-            if(item->GetType() == Item::Type::Pellet)
+            if(item->GetType() == Item::Type::addRange)
             {
                 // Destroy power pellet
                 collision.target->GetOwner()->SetState(ActorState::Destroy);
+                mRange++;
             }
-            else if(item->GetType() == Item::Type::PowerPellet)
+            if(item->GetType() == Item::Type::addBomb)
             {
                 // Destroy power pellet
                 collision.target->GetOwner()->SetState(ActorState::Destroy);
-
+                mBombLim++;
             }
 
             }
