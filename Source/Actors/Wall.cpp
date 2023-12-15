@@ -21,7 +21,7 @@ Wall::Wall(Game* game,const std::string &texturePath,ColliderLayer layer, int dr
 //
 //    new DrawPolygonComponent(this, vertices);
     mGame->AddWall(this);
-    new DrawSpriteComponent (this, "../Assets/Sprites/Blocks/Block"+texturePath+".jpg",32,32,drawOrder);
+    new DrawSpriteComponent (this, "../Assets/Sprites/Blocks/Block"+texturePath+".jpg",32,32,5);
 
 }
 

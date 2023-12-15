@@ -61,9 +61,10 @@ void Bomb::OnUpdate(float deltaTime)
                 bool naoC = false;
 
 
-                for(auto parede : mGame->GetWalls()) {
-                    if(parede->GetPosition().x == top.x && parede->GetPosition().y == top.y) {
+                for(auto parede : mGame->mExplosionPositions) {
+                    if(parede.x == top.x && parede.y == top.y) {
                         naoC = true;
+                        break;
                     }
                 }
 
@@ -78,9 +79,10 @@ void Bomb::OnUpdate(float deltaTime)
                 bool naoC = false;
 
 
-                for(auto parede : mGame->GetWalls()) {
-                    if(parede->GetPosition().x == left.x && parede->GetPosition().y == left.y) {
+                for(auto parede : mGame->mExplosionPositions) {
+                    if(parede.x == left.x && parede.y == left.y) {
                         naoC = true;
+                        break;
                     }
                 }
 
@@ -94,9 +96,10 @@ void Bomb::OnUpdate(float deltaTime)
                 Vector2 right = GetPosition() + Vector2(i*(+32), 0);
                 bool naoC = false;
 
-                for(auto parede : mGame->GetWalls()) {
-                    if(parede->GetPosition().x == right.x && parede->GetPosition().y == right.y) {
-                      naoC = true;
+                for(auto parede : mGame->mExplosionPositions) {
+                    if(parede.x == right.x && parede.y == right.y) {
+                        naoC = true;
+                        break;
                     }
                 }
 
@@ -110,8 +113,8 @@ void Bomb::OnUpdate(float deltaTime)
                 Vector2 down = GetPosition() + Vector2(0, i*(-32));
                 bool naoC = false;
 
-                for(auto parede : mGame->GetWalls()) {
-                    if(parede->GetPosition().x == down.x && parede->GetPosition().y == down.y) {
+                for(auto parede : mGame->mExplosionPositions) {
+                    if(parede.x == down.x && parede.y == down.y) {
                         naoC = true;
                     }
                 }

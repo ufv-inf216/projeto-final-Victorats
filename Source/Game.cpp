@@ -101,6 +101,7 @@ void Game::InitializeActors()
             UnloadActors();
             auto* background = new Actor(this);
             background->SetPosition(Vector2(256.0f, 256.0f));
+            new DrawSpriteComponent(background, "../Assets/Sprites/Background/Background.png", 512, 512,1);
 
 
             LoadLevel("../Assets/Levels/Level.txt",15,15);
@@ -149,6 +150,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
 
                     auto* wall = new Wall(this,std::string(1,aux[j]),ColliderLayer::Wall,1);
                     wall->SetPosition(pos);
+                    mExplosionPositions.emplace_back(pos);
 
                 }
 
@@ -156,7 +158,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
 
                     mPacman = new Pacman(this,1,125);
                     mPacman->SetPosition(pos);
-                    auto* wall = new Wall(this,"%",ColliderLayer::Node,1);
+                    auto* wall = new Floor(this,"%",ColliderLayer::Node,1);
                     wall->SetPosition(pos);
                     mBombPositions.emplace_back(pos);
                 }
@@ -169,7 +171,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
                 else if(aux[j] == 'A'){
                     mPlayer2 =  new Pacman(this,2,125);
                     mPlayer2->SetPosition(pos);
-                    auto* wall = new Wall(this,"%",ColliderLayer::Node,1);
+                    auto* wall = new Floor(this,"%",ColliderLayer::Node,1);
                     wall->SetPosition(pos);
                     mBombPositions.emplace_back(pos);
 
@@ -186,7 +188,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
         }
         mPacman->Start();
         mPlayer2->Start();
-    
+
         levelP.close();
 }
 
@@ -310,7 +312,7 @@ void Game::UpdateActors(float deltaTime)
 void Game::UpdateState(float deltaTime)
 {
 
-
+if (mGameState != State::Menu)
         if ((mPacman->IsDead() && mPacman->mDyingTimer <= 0) || (mPlayer2->IsDead() && mPlayer2->mDyingTimer <= 0)) {
 
             mGameState = State::Menu;

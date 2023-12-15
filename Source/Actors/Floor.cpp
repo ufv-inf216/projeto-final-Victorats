@@ -18,7 +18,7 @@ Floor::Floor(Game* game,const std::string &texturePath,ColliderLayer layer, int 
 //
 //    new DrawPolygonComponent(this, vertices);
     mGame->AddFloor(this);
-    new DrawSpriteComponent (this, "../Assets/Sprites/Blocks/Block"+texturePath+".jpg",32,32,drawOrder);
+    new DrawSpriteComponent (this, "../Assets/Sprites/Blocks/Block"+texturePath+".jpg",32,32,4);
 
 }
 Floor::~Floor()

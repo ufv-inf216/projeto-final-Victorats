@@ -22,12 +22,12 @@ Item::Item(Game* game, Type type, Vector2 position)
     {
         case 0:
             texturePath += "maisRange.jpg";
-            new DrawSpriteComponent (this, texturePath,32,32,25);
+            new DrawSpriteComponent (this, texturePath,32,32,10);
             break;
 
         case 1:
             texturePath += "maisQt.jpg";
-            new DrawSpriteComponent (this, texturePath,32,32,25);
+            new DrawSpriteComponent (this, texturePath,32,32,1);
             break;
 
     }

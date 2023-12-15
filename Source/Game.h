@@ -62,6 +62,7 @@ public:
     int GetWindowHeight() const { return mWindowHeight; }
 
     std::vector<class Vector2> mBombPositions;
+    std::vector<class Vector2> mExplosionPositions;
 
     SDL_Texture* LoadTexture(const std::string& texturePath);
 

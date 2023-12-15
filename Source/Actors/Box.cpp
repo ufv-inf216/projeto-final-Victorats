@@ -9,7 +9,7 @@
 #include "../Components/ColliderComponents/AABBColliderComponent.h"
 #include "Item.h"
 #include <random>
-
+#include <thread>
 Box::Box(Game* game,const std::string &texturePath,ColliderLayer layer)
         :Actor(game)
 {
@@ -23,7 +23,7 @@ Box::Box(Game* game,const std::string &texturePath,ColliderLayer layer)
 //
 //    new DrawPolygonComponent(this, vertices);
     mGame->AddBox(this);
-    new DrawSpriteComponent (this, "../Assets/Sprites/Blocks/Block"+texturePath+".png",32,32,25);
+    new DrawSpriteComponent (this, "../Assets/Sprites/Blocks/Block"+texturePath+".png",32,32,7);
 
 }
 
@@ -40,6 +40,7 @@ void Box::DestroyBox()
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis(0, 9);
+    
     int randomNumber = dis(gen);
 
         if(randomNumber == 2 || randomNumber == 1)
