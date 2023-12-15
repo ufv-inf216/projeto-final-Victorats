@@ -22,8 +22,17 @@ public:
         Intro,
         Started,
         Over,
-        Won
+        Won,
+        Menu,
+        End
     };
+    enum class FadeState
+    {
+        FadeIn,
+        FadeOut,
+        None
+    };
+
 
 
 
@@ -89,8 +98,11 @@ public:
     std::vector<class Box*>& Getbox() { return mBoxes; }
     void AddBox(class Box* box);
     void RemoveBox(class Box* box);
+    int mGameState = State::Menu;
+    bool beg = true;
 
 
+    SDL_Renderer* GetRenderer() { return mRenderer; }
 
 private:
     const float RESPAWN_TIME = 1.1f;
@@ -124,6 +136,8 @@ private:
     int mWindowWidth;
     int mWindowHeight;
 
+
+
     // Track elapsed time since game start
     Uint32 mTicksCount;
 
@@ -150,14 +164,13 @@ private:
     class PathNode* mTunnelRight = nullptr;
     class PathNode* mGhostPen = nullptr;
 
+    class Scene *mScene;
+
+    class Font *mMenuFont;
 
 
-
-    bool mShowGraph = false;
-    bool mShowGhostPaths = true;
-    bool mPrev1Input = false;
-    bool mPrev2Input = false;
-    int mGameState = State::Intro;
+    FadeState mFadeState;
+    float mSceneTransitionTime;
 
     float mRespawnTimer = 0.0f;
 

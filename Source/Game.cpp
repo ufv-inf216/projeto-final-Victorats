@@ -24,6 +24,9 @@
 #include "Actors/Box.h"
 #include "Actors/Floor.h"
 #include "AudioSystem.h"
+#include "Font.h"
+#include "Components/DrawComponents/DrawTextComponent.h"
+
 
 
 Game::Game(int windowWidth, int windowHeight)
@@ -35,8 +38,8 @@ Game::Game(int windowWidth, int windowHeight)
         ,mWindowWidth(windowWidth)
         ,mWindowHeight(windowHeight)
         ,mRespawnTimer(RESPAWN_TIME)
-{
 
+{
 }
 
 bool Game::Initialize()
@@ -69,31 +72,55 @@ bool Game::Initialize()
     mTicksCount = SDL_GetTicks();
 
     // Init all game actors
+
     InitializeActors();
     return true;
 }
 
 void Game::InitializeActors()
 {
-    // Background
-    auto* background = new Actor(this);
-    background->SetPosition(Vector2(256.0f, 256.0f));
-    //DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 512, 512);
+    if(mGameState == State::Menu){
+        beg = false;
+        UnloadActors();
+        //mMenuFont = new Font();
+        //mMenuFont->Load("../Assets/Fonts/Zelda.ttf");
+        auto *background = new Actor(this);
+        new DrawSpriteComponent(background, "../Assets/Sprites/Menu/Background.png", 512, 288);
+        //new DrawSpriteComponent(background, "../Assets/Sprites/Menu/Title.png", 348, 172);
 
-    LoadLevel("../Assets/Levels/Level.txt",15,15);
-    mAudio = new AudioSystem();
-    mAudio->PlaySound("MusicLoop.ogg",true);
+       /* // Press Space label
+        auto *pressSpace = new Actor(this);
+        pressSpace->SetPosition(Vector2(this->GetWindowWidth()/2.0f, this->GetWindowHeight() - 42.0f));
+        new DrawTextComponent(pressSpace, "Aperte Espaço", mMenuFont, 120, 28, 64);
+        */
 
-    SetGameState(State::Intro);
+    }
+
+    if(mGameState ==State::Intro){
+            beg = true;
+            UnloadActors();
+            auto* background = new Actor(this);
+            background->SetPosition(Vector2(256.0f, 256.0f));
+            //DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 512, 512);
+
+            LoadLevel("../Assets/Levels/Level.txt",15,15);
+            mAudio = new AudioSystem();
+            mAudio->PlaySound("MusicLoop.ogg",true);
+
+
+    }
+
 }
 
 void Game::SetGameState(State gameState)
 {
-    if (gameState == Intro)
-        mPacman->Start();
-
+    //mAudio->StopAllSounds();
+    mFadeState = FadeState::FadeOut;
     mGameState = gameState;
+
+
 }
+
 
 void Game::LoadLevel(const std::string& levelPath,const int width, const int height)
 {
@@ -157,6 +184,8 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
 
             }
         }
+        mPacman->Start();
+        mPlayer2->Start();
         levelP.close();
 }
 
@@ -202,12 +231,11 @@ void Game::ProcessInput()
         actor->ProcessInput(state);
     }
 
-    if (state[SDL_SCANCODE_D] || state[SDL_SCANCODE_A] ||
-        state[SDL_SCANCODE_W] || state[SDL_SCANCODE_S])
+    if (state[SDL_SCANCODE_SPACE])
     {
-        if(mGameState == State::Intro) {
-            SetGameState(State::Started);
-        }
+            if(!beg)
+                SetGameState(State::Intro);
+
     }
 
 }
@@ -224,6 +252,12 @@ void Game::UpdateGame()
 
     mTicksCount = SDL_GetTicks();
 
+    if (mGameState == State::Intro)
+    {
+        UnloadActors();
+        InitializeActors();
+    }
+
     // Update all actors and pending actors
     UpdateActors(deltaTime);
 
@@ -238,6 +272,9 @@ void Game::UpdateCamera()
 {
 
 }
+
+
+
 
 void Game::UpdateActors(float deltaTime)
 {
@@ -272,15 +309,15 @@ void Game::UpdateActors(float deltaTime)
 void Game::UpdateState(float deltaTime)
 {
 
-    if((mPacman->IsDead() && mPacman->mDyingTimer <= 0) || (mPlayer2->IsDead() && mPlayer2->mDyingTimer <=0))
-    {
-        UnloadActors();
 
-        mGameState = State::Intro;
-        mRespawnTimer = RESPAWN_TIME;
+        if ((mPacman->IsDead() && mPacman->mDyingTimer <= 0) || (mPlayer2->IsDead() && mPlayer2->mDyingTimer <= 0)) {
 
-        InitializeActors();
-    }
+            mGameState = State::Menu;
+            mRespawnTimer = RESPAWN_TIME;
+
+            InitializeActors();
+        }
+
 
     // Count number of pellets in game
     int pellets_count = 0;
@@ -289,7 +326,7 @@ void Game::UpdateState(float deltaTime)
     // For now, just pause the game
     if(pellets_count == 0)
     {
-        mGameState = State::Won;
+        //mGameState = State::Won;
 
     }
 }

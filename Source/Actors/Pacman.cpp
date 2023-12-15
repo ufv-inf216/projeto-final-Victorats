@@ -170,6 +170,7 @@ void Pacman::Die()
     mColliderComponent->SetEnabled(false);
 
 
+
 }
 
 void Pacman::Start()
@@ -179,7 +180,7 @@ void Pacman::Start()
     mRigidBodyComponent->SetEnabled(true);
     mColliderComponent->SetEnabled(true);
     mDrawComponent->SetAnimation("idle");
-
+    mGame->SetGameState(Game::State::Started);
 }
 
 void Pacman::UpdateAnimations()

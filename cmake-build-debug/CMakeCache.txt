@@ -248,6 +248,9 @@ SDL2_image_DIR:PATH=C:/Program Files/SDL2_image-2.6.3/cmake
 //The directory containing a CMake configuration file for SDL2_mixer.
 SDL2_mixer_DIR:PATH=C:/Program Files/SDL2_mixer-2.6.3/cmake
 
+//The directory containing a CMake configuration file for SDL2_ttf.
+SDL2_ttf_DIR:PATH=C:/Program Files/SDL2_ttf-2.20.2/cmake
+
 //Value Computed by CMake
 p5-pacman_BINARY_DIR:STATIC=C:/Users/victo/Documents/GitHub/projeto-final-Victorats/cmake-build-debug
 
