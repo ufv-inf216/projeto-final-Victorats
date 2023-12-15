@@ -25,17 +25,34 @@ Pacman::Pacman(Game* game, int _id,
     mQtBombs = 0;
     mRange = 2;
     mBombLim = 1;
-    mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Pacman/globinsprite2.png", "../Assets/Sprites/Pacman/goblin.json", 8);
-    mDrawComponent->AddAnimation("idle", {0});
-    mDrawComponent->AddAnimation("dead", {0,1,2,3,4,5,6,7,8,9});
-    mDrawComponent->AddAnimation("right", {4,5,6,7});
-    mDrawComponent->AddAnimation("up", {8,9});
-    mDrawComponent->AddAnimation("down", {1,2,3});
+    if(id == 2) {
+        mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Pacman/globinsprite2.png",
+                                                   "../Assets/Sprites/Pacman/goblin.json", 8);
+        mDrawComponent->AddAnimation("idle", {0});
+        mDrawComponent->AddAnimation("dead", {0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
+        mDrawComponent->AddAnimation("right", {4, 5, 6, 7});
+        mDrawComponent->AddAnimation("up", {8, 9});
+        mDrawComponent->AddAnimation("down", {1, 2, 3});
 
-    mDrawComponent->SetAnimation("idle");
-    mDrawComponent->SetAnimFPS(10.0f);
-    mRigidBodyComponent = new RigidBodyComponent(this);
-    mColliderComponent = new AABBColliderComponent(this, 0, 0, 28, 28, ColliderLayer::Player);
+        mDrawComponent->SetAnimation("idle");
+        mDrawComponent->SetAnimFPS(10.0f);
+        mRigidBodyComponent = new RigidBodyComponent(this);
+        mColliderComponent = new AABBColliderComponent(this, 0, 0, 28, 28, ColliderLayer::Player);
+    }
+    if(id == 1){
+        mDrawComponent = new DrawAnimatedComponent(this, "../Assets/Sprites/Pacman/pD.png",
+                                                   "../Assets/Sprites/Pacman/pD.json", 8);
+        mDrawComponent->AddAnimation("idle", {0});
+        mDrawComponent->AddAnimation("dead", {0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
+        mDrawComponent->AddAnimation("right", {4, 5, 6, 7});
+        mDrawComponent->AddAnimation("up", {8, 9});
+        mDrawComponent->AddAnimation("down", {1, 2, 3});
+
+        mDrawComponent->SetAnimation("idle");
+        mDrawComponent->SetAnimFPS(10.0f);
+        mRigidBodyComponent = new RigidBodyComponent(this);
+        mColliderComponent = new AABBColliderComponent(this, 0, 0, 28, 28, ColliderLayer::Player);
+    }
 
 //    auto v1 = mColliderComponent->GetMin();
 //    auto v4 = mColliderComponent->GetMax();

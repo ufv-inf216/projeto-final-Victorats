@@ -38,7 +38,7 @@ void Box::DestroyBox()
 {
 
     Random rand;
-    int randomNumber = rand.GetIntRange(0,49);
+    int randomNumber = rand.GetIntRange(0,13);
 
 
 

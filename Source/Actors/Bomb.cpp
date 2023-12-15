@@ -6,7 +6,7 @@
 #include "../Game.h"
 #include "../Components/DrawComponents/DrawSpriteComponent.h"
 #include "Wall.h"
-
+#include "../AudioSystem.h"
 #include "../Components/DrawComponents/DrawAnimatedComponent.h"
 #include "../Actors/Explosion.h"
 
@@ -51,6 +51,8 @@ void Bomb::OnUpdate(float deltaTime)
     {
         mTimer -= deltaTime;
         if (mTimer <= 0.0f){
+
+            mGame->mAudio->PlaySound("bomb.mp3");
 
 
             mOwner->reduceBomb();
@@ -157,6 +159,7 @@ void Bomb::OnUpdate(float deltaTime)
             SetState(ActorState::Destroy);
 
         }
+        mGame->mAudio->CacheAllSounds();
     }
 
 
