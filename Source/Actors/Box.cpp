@@ -9,7 +9,8 @@
 #include "../Components/ColliderComponents/AABBColliderComponent.h"
 #include "Item.h"
 #include <random>
-#include <thread>
+#include "../Random.h"
+
 Box::Box(Game* game,const std::string &texturePath,ColliderLayer layer)
         :Actor(game)
 {
@@ -35,18 +36,18 @@ Box::~Box()
 void Box::DestroyBox()
 {
 
+    Random rand;
+    int randomNumber = rand.GetIntRange(0,49);
+
     SetState(ActorState::Destroy);
 
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, 9);
-    
-    int randomNumber = dis(gen);
 
-        if(randomNumber == 2 || randomNumber == 1)
-            new Item(mGame,Item::Type::addRange,GetPosition());
-        else if(randomNumber == 3 || randomNumber == 4)
+
+
+        if(randomNumber == 3)
             new Item(mGame,Item::Type::addBomb,GetPosition());
+        if(randomNumber == 6)
+        new Item(mGame,Item::Type::addRange,GetPosition());
 
 
 }

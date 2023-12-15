@@ -17,17 +17,17 @@ Item::Item(Game* game, Type type, Vector2 position)
     std::string jsonPath = "../Assets/Sprites/Items/";
     SetPosition(position);
 
-    int random = rand() % 2;
-    switch (random)
+
+    switch (type)
     {
-        case 0:
+        case addRange:
             texturePath += "maisRange.jpg";
             new DrawSpriteComponent (this, texturePath,32,32,10);
             break;
 
-        case 1:
+        case addBomb:
             texturePath += "maisQt.jpg";
-            new DrawSpriteComponent (this, texturePath,32,32,1);
+            new DrawSpriteComponent (this, texturePath,32,32,10);
             break;
 
     }
