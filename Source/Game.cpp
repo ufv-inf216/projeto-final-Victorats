@@ -85,14 +85,14 @@ void Game::InitializeActors()
         //mMenuFont = new Font();
         //mMenuFont->Load("../Assets/Fonts/Zelda.ttf");
         auto *background = new Actor(this);
-        new DrawSpriteComponent(background, "../Assets/Sprites/Menu/Background.png", 512, 288);
-        //new DrawSpriteComponent(background, "../Assets/Sprites/Menu/Title.png", 348, 172);
+        background->SetPosition(Vector2(256.0f, 256.0f));
+        new DrawSpriteComponent(background, "../Assets/Sprites/Background/Background.png", 512, 512);
 
-       /* // Press Space label
-        auto *pressSpace = new Actor(this);
-        pressSpace->SetPosition(Vector2(this->GetWindowWidth()/2.0f, this->GetWindowHeight() - 42.0f));
-        new DrawTextComponent(pressSpace, "Aperte Espaço", mMenuFont, 120, 28, 64);
-        */
+        new DrawSpriteComponent(background, "../Assets/Sprites/Background/lettering.png", 512, 512);
+        new DrawSpriteComponent(background, "../Assets/Sprites/Background/title.png", 512, 512);
+        new DrawSpriteComponent(background, "../Assets/Sprites/Background/drawing.png", 512, 512);
+
+
 
     }
 
@@ -101,7 +101,7 @@ void Game::InitializeActors()
             UnloadActors();
             auto* background = new Actor(this);
             background->SetPosition(Vector2(256.0f, 256.0f));
-            //DrawSpriteComponent(background, "../Assets/Sprites/Background.png", 512, 512);
+
 
             LoadLevel("../Assets/Levels/Level.txt",15,15);
             mAudio = new AudioSystem();
@@ -186,6 +186,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
         }
         mPacman->Start();
         mPlayer2->Start();
+    
         levelP.close();
 }
 
