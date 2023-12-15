@@ -10,6 +10,7 @@
 #include "Item.h"
 #include <random>
 #include "../Random.h"
+#include "../Components/DrawComponents/DrawAnimatedComponent.h"
 
 Box::Box(Game* game,const std::string &texturePath,ColliderLayer layer)
         :Actor(game)
@@ -38,6 +39,8 @@ void Box::DestroyBox()
 
     Random rand;
     int randomNumber = rand.GetIntRange(0,49);
+
+
 
     SetState(ActorState::Destroy);
 

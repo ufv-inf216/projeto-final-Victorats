@@ -68,6 +68,14 @@ void Bomb::OnUpdate(float deltaTime)
                     }
                 }
 
+                for(auto caixa : mGame->mBoxPositions) {
+                    if(caixa.x == top.x && caixa.y == top.y) {
+                        naoC = true;
+                        new Explosion(GetGame(), top);
+                        break;
+                    }
+                }
+
                 if(naoC) {
                     break;
                 }
@@ -81,6 +89,13 @@ void Bomb::OnUpdate(float deltaTime)
 
                 for(auto parede : mGame->mExplosionPositions) {
                     if(parede.x == left.x && parede.y == left.y) {
+                        naoC = true;
+                        break;
+                    }
+                }
+                for(auto caixa : mGame->mBoxPositions) {
+                    if(caixa.x == left.x && caixa.y == left.y) {
+                        new Explosion(GetGame(), left);
                         naoC = true;
                         break;
                     }
@@ -102,6 +117,13 @@ void Bomb::OnUpdate(float deltaTime)
                         break;
                     }
                 }
+                for(auto caixa : mGame->mBoxPositions) {
+                    if(caixa.x == right.x && caixa.y == right.y) {
+                        naoC = true;
+                        new Explosion(GetGame(), right);
+                        break;
+                    }
+                }
 
                 if(naoC) {
                     break;
@@ -116,6 +138,13 @@ void Bomb::OnUpdate(float deltaTime)
                 for(auto parede : mGame->mExplosionPositions) {
                     if(parede.x == down.x && parede.y == down.y) {
                         naoC = true;
+                    }
+                }
+                for(auto caixa : mGame->mBoxPositions) {
+                    if(caixa.x == down.x && caixa.y == down.y) {
+                        naoC = true;
+                        new Explosion(GetGame(), down);
+                        break;
                     }
                 }
 

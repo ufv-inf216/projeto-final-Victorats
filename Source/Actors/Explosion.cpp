@@ -80,8 +80,13 @@ void Explosion::OnCollision(std::vector<AABBColliderComponent::Overlap>& respons
             for(auto x : mGame->Getbox()){
                 if(collision.target->GetOwner() == x){
                     x->DestroyBox();
-                }
+                    auto pos = x->GetPosition();
+                    mGame->mBoxPositions.erase(std::remove_if(mGame->mBoxPositions.begin(), mGame->mBoxPositions.end(),
+                                                              [&pos](const Vector2& boxPos) {
+                                                                  return boxPos.x == pos.x && boxPos.y == pos.y;
+                                                              }), mGame->mBoxPositions.end());
             }
+
         }
         if(collision.target->GetLayer() == ColliderLayer::Player)
         {
@@ -97,7 +102,7 @@ void Explosion::OnCollision(std::vector<AABBColliderComponent::Overlap>& respons
 
 
     }
-}
+}}
 
 
 

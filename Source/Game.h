@@ -99,8 +99,10 @@ public:
     std::vector<class Box*>& Getbox() { return mBoxes; }
     void AddBox(class Box* box);
     void RemoveBox(class Box* box);
+
     int mGameState = State::Menu;
     bool beg = true;
+    std::vector<Vector2> mBoxPositions;
 
 
     SDL_Renderer* GetRenderer() { return mRenderer; }
@@ -158,6 +160,7 @@ private:
     std::vector<class Ghost*> mGhosts;
     std::vector<class PathNode*> mPathNodes;
     std::vector<class Box*> mBoxes;
+
 
     void UnloadActors();
 

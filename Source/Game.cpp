@@ -91,6 +91,8 @@ void Game::InitializeActors()
         new DrawSpriteComponent(background, "../Assets/Sprites/Background/lettering.png", 512, 512);
         new DrawSpriteComponent(background, "../Assets/Sprites/Background/title.png", 512, 512);
         new DrawSpriteComponent(background, "../Assets/Sprites/Background/drawing.png", 512, 512);
+        mAudio = new AudioSystem();
+        mAudio->PlaySound("menu.wav",true);
 
 
 
@@ -182,6 +184,7 @@ void Game::LoadLevel(const std::string& levelPath,const int width, const int hei
                     path->SetPosition(pos);
                     box->SetPosition(pos);
                     mBombPositions.emplace_back(pos);
+                    mBoxPositions.emplace_back(pos);
                 }
 
             }
@@ -317,6 +320,9 @@ if (mGameState != State::Menu)
 
             mGameState = State::Menu;
             mRespawnTimer = RESPAWN_TIME;
+
+            for(auto i : Getbox())
+                i->SetState(ActorState::Destroy);
 
             InitializeActors();
         }
